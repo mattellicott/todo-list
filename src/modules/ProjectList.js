@@ -1,6 +1,6 @@
 import { deleteProperty } from "./PublicFunctions";
 
-export const projectList = function () {
+export function ProjectList() {
   const _projectList = {};
 
   const publicMethods = {
@@ -28,4 +28,4 @@ export const projectList = function () {
   };
 
   return publicMethods;
-};
+}
