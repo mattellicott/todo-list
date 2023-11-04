@@ -29,7 +29,7 @@ export function Project(title) {
     },
 
     getTaskList: () => {
-      return { ..._taskList };
+      return _taskList;
     },
   };
 
