@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  height: 80px;
+}
+
+#uiWrapper {
+  border-top: 2px solid rgb(0 0 0);
+  flex: 1;
+  display: flex;
+}
+
+#sidebar {
+  border-right: 2px solid rgb(0 0 0);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.filterGroup > * {
+  background-color: rgb(255 255 255);
+  border: 5px solid white;
+  width: 200px;
+  font: bold 2rem Arial;
+  user-select: none;
+}
+
+.filterGroupHeader {
+  text-align: center;
+  filter: invert(1);
+}
+
+.filterButton:hover,
+.filterButton .active {
+  background-color: black;
+  color: white;
+  border: 5px solid red;
+}
+
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
