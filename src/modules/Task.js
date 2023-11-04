@@ -2,8 +2,8 @@ export function Task(title, description, dueDate, priority = 0, completed = fals
   const _task = { title, description, dueDate, priority, completed };
 
   const publicMethods = {
-    getTaskClone: () => {
-      return { ..._task };
+    getTask: () => {
+      return _task;
     },
 
     setTitle: (title) => {
