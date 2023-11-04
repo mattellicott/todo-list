@@ -9,8 +9,8 @@ export function Project(title) {
       _taskList[Object.keys(_taskList).length] = task;
     },
 
-    deleteTask: (property) => {
-      deleteProperty(_taskList, property);
+    deleteTask: (task) => {
+      deleteProperty(_taskList, task);
     },
 
     getTitle: () => {
