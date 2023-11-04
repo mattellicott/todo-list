@@ -33,5 +33,13 @@ function Project(title) {
     },
   };
 
+  function condenseTaskList(startKey, endKey) {
+    for (let i = startKey; i < endKey; i++) {
+      _taskList[i] = _taskList[+i + 1];
+    }
+
+    delete _taskList[endKey];
+  }
+
   return publicMethods;
 }
