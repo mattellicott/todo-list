@@ -18,7 +18,7 @@ export function Project(title) {
         }
 
         if (taskDeleted) {
-          condenseTaskList(key, endKey);
+          condenseObject(_taskList, key, endKey);
           break;
         }
       }
@@ -32,14 +32,6 @@ export function Project(title) {
       return _taskList;
     },
   };
-
-  function condenseTaskList(startKey, endKey) {
-    for (let i = startKey; i < endKey; i++) {
-      _taskList[i] = _taskList[+i + 1];
-    }
-
-    delete _taskList[endKey];
-  }
 
   return publicMethods;
 }
