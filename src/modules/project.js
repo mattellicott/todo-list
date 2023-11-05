@@ -1,4 +1,4 @@
-import { deleteProperty } from "./PublicFunctions";
+import { deleteProperty } from "./shared-functions";
 
 export function Project(title) {
   const _title = title;
