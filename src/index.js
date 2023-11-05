@@ -1,7 +1,10 @@
 import "./style.css";
-import { UI } from "./modules/UI";
+import { UserInterface } from "./modules/UI";
 import { ProjectList } from "./modules/ProjectList";
 
-export const projects = ProjectList();
+const projects = ProjectList();
+const UI = UserInterface();
 
 UI.init();
+
+export { projects };
