@@ -1,3 +1,4 @@
 import "./style.css";
+import { ui } from "./modules/data-initialization";
 
-UI.init();
+ui.init();
