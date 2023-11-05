@@ -7,7 +7,7 @@ const DEFAULT_ELEMENTS = {
 };
 const DEFAULT_TAB_NAMES = ["All", "Today", "Week", "Important", "Completed"];
 
-const projects = ProjectList();
+const projectList = ProjectList();
 const ui = UserInterface();
 
-export { DEFAULT_TAB_NAMES, DEFAULT_ELEMENTS, projects, ui };
+export { DEFAULT_TAB_NAMES, DEFAULT_ELEMENTS, projectList, ui };
