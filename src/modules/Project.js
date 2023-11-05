@@ -17,7 +17,7 @@ export function Project(title) {
       return _title;
     },
 
-    getTaskList: () => {
+    getTasks: () => {
       return _taskList;
     },
   };
