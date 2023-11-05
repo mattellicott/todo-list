@@ -1,4 +1,4 @@
-import { DEFAULT_ELEMENTS, DEFAULT_TAB_NAMES, projectList } from "./data-initialization";
+import { DEFAULT_ELEMENT_IDS, DEFAULT_TAB_NAMES, projectList } from "./data-initialization";
 
 export function UserInterface() {
   const publicMethods = {
