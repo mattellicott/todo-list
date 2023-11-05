@@ -14,7 +14,7 @@ body {
   height: 80px;
 }
 
-#uiWrapper {
+#ui-wrapper {
   border-top: 2px solid rgb(0 0 0);
   flex: 1;
   display: flex;
@@ -29,7 +29,7 @@ body {
   padding: 10px;
 }
 
-.sidebarTab {
+.sidebar-tab {
   background-color: rgb(255 255 255);
   border: 5px solid white;
   width: 200px;
@@ -37,8 +37,8 @@ body {
   user-select: none;
 }
 
-.sidebarTab:hover,
-.sidebarTab .active {
+.sidebar-tab:hover,
+.sidebar-tab .active {
   background-color: black;
   color: white;
   border: 5px solid red;
@@ -52,14 +52,14 @@ body {
   padding: 25px;
 }
 
-#newProjectDialog {
+#project-modal {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-#newProjectDialog[open] {
+#project-modal[open] {
   height: 800px;
   width: 800px;
 }
