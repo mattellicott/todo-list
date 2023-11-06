@@ -63,11 +63,11 @@ header {
   grid-area: 2 / 2 / 3 / 3;
 }
 
-#project-modal {
+#new-project-dialog {
   margin: auto;
 }
 
-#project-modal[open] {
+#new-project-dialog[open] {
   height: 400px;
   width: 400px;
 }
