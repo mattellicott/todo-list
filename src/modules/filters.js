@@ -1,4 +1,8 @@
 import { Project } from "./project";
 import { Task } from "./task";
 
-export function Filters() {}
+export function Filters() {
+  const publicMethods = {};
+
+  return publicMethods;
+}
