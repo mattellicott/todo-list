@@ -59,7 +59,7 @@ function clickSidebarTab(project) {
   const newProjectFormCreate = document.getElementById("new-project-form-create");
 
   newProjectBtn.addEventListener("click", clickNewProject);
-  newProjectFormCreate.addEventListener("click", submitNewProjectForm);
+  newProjectForm.addEventListener("submit", submitNewProjectForm);
   newProjectFormCancel.addEventListener("click", closeNewProjectDialog);
   newProjectDialog.addEventListener("close", closeNewProjectDialog);
 
@@ -68,12 +68,8 @@ function clickSidebarTab(project) {
   }
 
   function submitNewProjectForm() {
-    const titleValue = newProjectFormTitle.value;
-
-    if (titleValue) {
-      projectList.addProject(Project(titleValue));
-      reloadProjectTabs();
-    }
+    projectList.addProject(Project(newProjectFormTitle.value));
+    reloadProjectTabs();
   }
 
   function closeNewProjectDialog() {
