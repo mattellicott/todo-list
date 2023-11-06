@@ -13,17 +13,7 @@ export function ProjectList() {
     },
 
     getProjects: () => {
-      return _projectList;
-    },
-
-    getProjectTitles: () => {
-      const titles = [];
-
-      for (const key in _projectList) {
-        titles.push(_projectList[key].getTitle());
-      }
-
-      return titles;
+      return Array.from(Object.values(_projectList));
     },
   };
 
