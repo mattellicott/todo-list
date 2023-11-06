@@ -1,7 +1,7 @@
 import "./style.css";
 import { Filters } from "./modules/filters";
-import { ProjectList } from "./project-list";
-import { UserInterface } from "./user-interface";
+import { ProjectList } from "./modules/project-list";
+import { UserInterface } from "./modules/user-interface";
 
 const filters = Filters();
 const projectList = ProjectList();
