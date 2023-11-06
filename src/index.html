@@ -26,13 +26,13 @@
       </script>
       mattellicott
     </footer>
-    <dialog id="new-project-modal">
+    <dialog id="new-project-dialog">
       <form id="new-project-form">
         <h1>Add Project</h1>
         <label for="new-project-form-title">Title:</label>
         <input id="new-project-form-title" type="text" required />
-        <button type="reset" id="project-form-reset">Cancel</button>
-        <button type="submit">Create</button>
+        <button id="new-project-form-cancel" type="reset">Cancel</button>
+        <input id="new-project-form-create" type="submit" formmethod="dialog" value="Create" />
       </form>
     </dialog>
   </body>
