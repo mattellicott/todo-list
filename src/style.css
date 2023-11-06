@@ -48,6 +48,8 @@ header {
   font: bold 2rem Arial;
   user-select: none;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #sidebar-filter-tabs *:hover,
