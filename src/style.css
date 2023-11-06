@@ -38,10 +38,10 @@ header {
 }
 
 #sidebar-filter-header,
-#sidebar-filter-items *,
+#sidebar-filter-tabs *,
 #sidebar-project-header,
 #sidebar-project-new-button,
-#sidebar-project-items * {
+#sidebar-project-tabs * {
   background-color: rgb(255 255 255);
   border: 5px solid white;
   width: 200px;
@@ -50,10 +50,10 @@ header {
   text-align: center;
 }
 
-#sidebar-filter-items *:hover,
-#sidebar-filter-items *.active,
-#sidebar-project-items *:hover,
-#sidebar-project-items *.active {
+#sidebar-filter-tabs *:hover,
+#sidebar-filter-tabs *.active,
+#sidebar-project-tabs *:hover,
+#sidebar-project-tabs *.active {
   background-color: black;
   color: white;
   border: 5px solid red;
