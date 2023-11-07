@@ -13,7 +13,7 @@ export function ProjectList() {
     },
 
     getProjects: () => {
-      return Array.from(Object.values(_projectList));
+      return _projectList;
     },
   };
 
