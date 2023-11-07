@@ -25,7 +25,7 @@ function Sidebar() {
 }
 
 function loadProjectTabs() {
-  for (const project of projectList.getProjects()) {
+  for (const project of Object.values(projectList.getProjects())) {
     const projectTitle = project.getTitle();
     const buttonElement = document.createElement("button");
 
@@ -56,7 +56,6 @@ function clickSidebarTab(project) {
   const newProjectForm = document.getElementById("new-project-form");
   const newProjectFormTitle = document.getElementById("new-project-form-title");
   const newProjectFormCancel = document.getElementById("new-project-form-cancel");
-  const newProjectFormCreate = document.getElementById("new-project-form-create");
 
   newProjectBtn.addEventListener("click", clickNewProject);
   newProjectForm.addEventListener("submit", submitNewProjectForm);
