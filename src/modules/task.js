@@ -1,4 +1,10 @@
-export function Task(title, description, dueDate, priority = 0, completed = false) {
+export function Task(
+  title,
+  description,
+  dueDate,
+  priority = 10,
+  completed = false,
+) {
   const _task = { title, description, dueDate, priority, completed };
 
   const publicMethods = {
