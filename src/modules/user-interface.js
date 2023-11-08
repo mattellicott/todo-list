@@ -2,15 +2,13 @@ import { Project } from "./project";
 import { Task } from "./task";
 import { projectList, filterList } from "..";
 
-const sidebar = Sidebar();
-
 const filterTabsElement = document.getElementById("sidebar-filter-tabs");
 const projectTabsElement = document.getElementById("sidebar-project-tabs");
 
 export function UserInterface() {
   const publicMethods = {
     load: () => {
-      sidebar.loadTabs();
+      loadSidebar();
     },
   };
 
@@ -184,23 +182,48 @@ function loadProjectPage(project) {
   }
 }
 
-function Sidebar() {
+function loadSidebar() {
   const newProjectBtn = document.getElementById("sidebar-project-new-button");
 
   newProjectBtn.addEventListener("click", newProjectHandler);
 
-  const publicMethods = {
-    loadTabs: () => {
-      loadProjectTabs();
-    },
+  loadProjectTabs();
 
-    reloadProjectTabs: () => {
-      removeElementChildren(projectTabsElement);
-      loadProjectTabs();
-    },
-  };
+  function reloadProjectTabs() {
+    removeElementChildren(projectTabsElement);
+    loadProjectTabs();
+  }
 
-  return publicMethods;
+  function loadProjectTabs() {
+    for (const project of Object.values(projectList.getProjects())) {
+      const projectTitle = project.getTitle();
+      const buttonElement = document.createElement("button");
+
+      buttonElement.innerHTML = projectTitle;
+      buttonElement.id = projectTitle + "-tab";
+      buttonElement.title = projectTitle;
+      buttonElement.addEventListener("click", (e) => {
+        updateActiveClassTabs(e);
+        clickSidebarTab(project);
+      });
+
+      projectTabsElement.appendChild(buttonElement);
+    }
+  }
+
+  function updateActiveClassTabs(event) {
+    for (const child of filterTabsElement.children) {
+      child.classList.remove("active");
+    }
+    for (const child of projectTabsElement.children) {
+      child.classList.remove("active");
+    }
+    event.target.classList.add("active");
+  }
+
+  function clickSidebarTab(project) {
+    loadProjectPage(project);
+  }
 
   function newProjectHandler() {
     const dialogElement = document.getElementById("new-project-dialog");
@@ -222,7 +245,7 @@ function Sidebar() {
       newProject = Project(formTitleElement.value);
 
       projectList.addProject(newProject);
-      sidebar.reloadProjectTabs();
+      reloadProjectTabs();
     }
 
     function closedialogElement() {
@@ -235,37 +258,6 @@ function Sidebar() {
       loadProjectPage(newProject);
     }
   }
-}
-
-function loadProjectTabs() {
-  for (const project of Object.values(projectList.getProjects())) {
-    const projectTitle = project.getTitle();
-    const buttonElement = document.createElement("button");
-
-    buttonElement.innerHTML = projectTitle;
-    buttonElement.id = projectTitle + "-tab";
-    buttonElement.title = projectTitle;
-    buttonElement.addEventListener("click", (e) => {
-      updateActiveClassTabs(e);
-      clickSidebarTab(project);
-    });
-
-    projectTabsElement.appendChild(buttonElement);
-  }
-}
-
-function updateActiveClassTabs(event) {
-  for (const child of filterTabsElement.children) {
-    child.classList.remove("active");
-  }
-  for (const child of projectTabsElement.children) {
-    child.classList.remove("active");
-  }
-  event.target.classList.add("active");
-}
-
-function clickSidebarTab(project) {
-  loadProjectPage(project);
 }
 
 function removeElementChildren(element) {
