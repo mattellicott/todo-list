@@ -4,6 +4,7 @@ import { projectList, filterList } from "..";
 
 const sidebar = Sidebar();
 
+const filterTabsElement = document.getElementById("sidebar-filter-tabs");
 const projectTabsElement = document.getElementById("sidebar-project-tabs");
 
 export function UserInterface() {
