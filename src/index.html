@@ -21,18 +21,24 @@
       </div>
       <div id="project-page">
         <header id="project-page-header"><u></u></header>
-        <button id="project-page-add-task-button">Add Task</button>
-        <form id="add-task-form">
-          <label for="add-task-form-title">Title:</label>
-          <input id="add-task-form-title" type="text" required />
-          <label for="add-task-form-desc">Description:</label>
-          <input id="add-task-form-desc" type="text" required />
-          <label for="add-task-form-duedate">Due Date:</label>
-          <input id="add-task-form-duedate" type="date" />
-          <label for="add-task-form-priority">Priority:</label>
-          <input id="add-task-form-priority" type="number" min="0" max="10" />
-          <button id="add-task-form-cancel" type="reset">Cancel</button>
-          <input id="add-task-form-create" type="submit" formmethod="dialog" value="Add" />
+        <button id="project-page-new-task-button">New Task</button>
+        <form id="new-task-form">
+          <label for="new-task-form-title">Title:</label>
+          <input id="new-task-form-title" type="text" required />
+          <label for="new-task-form-desc">Description:</label>
+          <input id="new-task-form-desc" type="text" required />
+          <label for="new-task-form-duedate">Due Date:</label>
+          <input id="new-task-form-duedate" type="date" />
+          <label for="new-task-form-priority">Priority:</label>
+          <input id="new-task-form-priority" type="number" min="0" max="10" />
+          <label for="new-task-form-completed">Completed:</label>
+          <input id="new-task-form-completed" type="checkbox" />
+          <button id="new-task-form-cancel" type="reset">Cancel</button>
+          <input
+            id="new-task-form-create"
+            type="submit"
+            formmethod="dialog"
+            value="Create" />
         </form>
         <div id="project-page-tasks"></div>
       </div>
@@ -50,7 +56,11 @@
         <label for="new-project-form-title">Title:</label>
         <input id="new-project-form-title" type="text" required />
         <button id="new-project-form-cancel" type="reset">Cancel</button>
-        <input id="new-project-form-create" type="submit" formmethod="dialog" value="Create" />
+        <input
+          id="new-project-form-create"
+          type="submit"
+          formmethod="dialog"
+          value="Create" />
       </form>
     </dialog>
   </body>
