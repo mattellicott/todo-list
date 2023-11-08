@@ -15,6 +15,12 @@ export function ProjectList() {
     getProjects: () => {
       return _projectList;
     },
+
+    setProjectsInactive: () => {
+      for (const key in _projectList) {
+        _projectList[key].setIsActive(false);
+      }
+    },
   };
 
   return publicMethods;
