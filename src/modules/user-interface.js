@@ -234,39 +234,37 @@ function removeElementChildren(element) {
   element.innerHTML = "";
 }
 
-(function NewProjectHandler() {
+(function newProjectHandler() {
   const newProjectBtn = document.getElementById("sidebar-project-new-button");
-  const newProjectDialog = document.getElementById("new-project-dialog");
-  const newProjectForm = document.getElementById("new-project-form");
-  const newProjectFormTitle = document.getElementById("new-project-form-title");
-  const newProjectFormCancel = document.getElementById(
-    "new-project-form-cancel",
-  );
+  const dialogElement = document.getElementById("new-project-dialog");
+  const formElement = document.getElementById("new-project-form");
+  const formTitleElement = document.getElementById("new-project-form-title");
+  const formCancelElement = document.getElementById("new-project-form-cancel");
 
   newProjectBtn.addEventListener("click", clickNewProject);
-  newProjectForm.addEventListener("submit", submitNewProjectForm);
-  newProjectFormCancel.addEventListener("click", closeNewProjectDialog);
-  newProjectDialog.addEventListener("close", closeNewProjectDialog);
+  formElement.addEventListener("submit", submitformElement);
+  formCancelElement.addEventListener("click", closedialogElement);
+  dialogElement.addEventListener("close", closedialogElement);
 
   let newProject = {};
 
   function clickNewProject() {
-    newProjectDialog.showModal();
+    dialogElement.showModal();
   }
 
-  function submitNewProjectForm() {
-    newProject = Project(newProjectFormTitle.value);
+  function submitformElement() {
+    newProject = Project(formTitleElement.value);
 
     projectList.addProject(newProject);
     sidebar.reloadProjectTabs();
   }
 
-  function closeNewProjectDialog() {
-    if (newProjectDialog.hasAttribute("open")) {
-      newProjectDialog.close();
+  function closedialogElement() {
+    if (dialogElement.hasAttribute("open")) {
+      dialogElement.close();
     }
 
-    newProjectForm.reset();
+    formElement.reset();
 
     loadProjectPage(newProject);
   }
