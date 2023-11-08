@@ -185,6 +185,10 @@ function loadProjectPage(project) {
 }
 
 function Sidebar() {
+  const newProjectBtn = document.getElementById("sidebar-project-new-button");
+
+  newProjectBtn.addEventListener("click", newProjectHandler);
+
   const publicMethods = {
     loadTabs: () => {
       loadProjectTabs();
@@ -197,6 +201,40 @@ function Sidebar() {
   };
 
   return publicMethods;
+
+  function newProjectHandler() {
+    const dialogElement = document.getElementById("new-project-dialog");
+    const formElement = document.getElementById("new-project-form");
+    const formTitleElement = document.getElementById("new-project-form-title");
+    const formCancelElement = document.getElementById(
+      "new-project-form-cancel",
+    );
+
+    formElement.addEventListener("submit", submitformElement);
+    formCancelElement.addEventListener("click", closedialogElement);
+    dialogElement.addEventListener("close", closedialogElement);
+
+    let newProject = {};
+
+    dialogElement.showModal();
+
+    function submitformElement() {
+      newProject = Project(formTitleElement.value);
+
+      projectList.addProject(newProject);
+      sidebar.reloadProjectTabs();
+    }
+
+    function closedialogElement() {
+      if (dialogElement.hasAttribute("open")) {
+        dialogElement.close();
+      }
+
+      formElement.reset();
+
+      loadProjectPage(newProject);
+    }
+  }
 }
 
 function loadProjectTabs() {
@@ -233,39 +271,3 @@ function clickSidebarTab(project) {
 function removeElementChildren(element) {
   element.innerHTML = "";
 }
-
-(function newProjectHandler() {
-  const newProjectBtn = document.getElementById("sidebar-project-new-button");
-  const dialogElement = document.getElementById("new-project-dialog");
-  const formElement = document.getElementById("new-project-form");
-  const formTitleElement = document.getElementById("new-project-form-title");
-  const formCancelElement = document.getElementById("new-project-form-cancel");
-
-  newProjectBtn.addEventListener("click", clickNewProject);
-  formElement.addEventListener("submit", submitformElement);
-  formCancelElement.addEventListener("click", closedialogElement);
-  dialogElement.addEventListener("close", closedialogElement);
-
-  let newProject = {};
-
-  function clickNewProject() {
-    dialogElement.showModal();
-  }
-
-  function submitformElement() {
-    newProject = Project(formTitleElement.value);
-
-    projectList.addProject(newProject);
-    sidebar.reloadProjectTabs();
-  }
-
-  function closedialogElement() {
-    if (dialogElement.hasAttribute("open")) {
-      dialogElement.close();
-    }
-
-    formElement.reset();
-
-    loadProjectPage(newProject);
-  }
-})();
