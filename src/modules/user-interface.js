@@ -2,9 +2,6 @@ import { Project } from "./project";
 import { Task } from "./task";
 import { projectList, filterList } from "..";
 
-const filterTabsElement = document.getElementById("sidebar-filter-tabs");
-const projectTabsElement = document.getElementById("sidebar-project-tabs");
-
 export function UserInterface() {
   const publicMethods = {
     load: () => {
@@ -183,25 +180,22 @@ function loadProjectPage(project) {
 }
 
 function loadSidebar() {
+  const filterTabsElement = document.getElementById("sidebar-filter-tabs");
+  const projectTabsElement = document.getElementById("sidebar-project-tabs");
   const newProjectBtn = document.getElementById("sidebar-project-new-button");
 
   newProjectBtn.addEventListener("click", newProjectHandler);
 
   loadProjectTabs();
 
-  function reloadProjectTabs() {
-    removeElementChildren(projectTabsElement);
-    loadProjectTabs();
-  }
-
   function loadProjectTabs() {
     for (const project of Object.values(projectList.getProjects())) {
-      const projectTitle = project.getTitle();
+      const title = project.getTitle();
       const buttonElement = document.createElement("button");
 
-      buttonElement.innerHTML = projectTitle;
-      buttonElement.id = projectTitle + "-tab";
-      buttonElement.title = projectTitle;
+      buttonElement.innerHTML = title;
+      buttonElement.id = title + "-tab";
+      buttonElement.title = title;
       buttonElement.addEventListener("click", (e) => {
         updateActiveClassTabs(e);
         clickSidebarTab(project);
@@ -209,6 +203,11 @@ function loadSidebar() {
 
       projectTabsElement.appendChild(buttonElement);
     }
+  }
+
+  function reloadProjectTabs() {
+    removeElementChildren(projectTabsElement);
+    loadProjectTabs();
   }
 
   function updateActiveClassTabs(event) {
@@ -226,34 +225,35 @@ function loadSidebar() {
   }
 
   function newProjectHandler() {
-    const dialogElement = document.getElementById("new-project-dialog");
-    const formElement = document.getElementById("new-project-form");
-    const formTitleElement = document.getElementById("new-project-form-title");
-    const formCancelElement = document.getElementById(
-      "new-project-form-cancel",
-    );
+    const dialog = document.getElementById("new-project-dialog");
+    const form = document.getElementById("new-project-form");
+    const formTitle = document.getElementById("new-project-form-title");
+    const formCancel = document.getElementById("new-project-form-cancel");
 
-    formElement.addEventListener("submit", submitformElement);
-    formCancelElement.addEventListener("click", closedialogElement);
-    dialogElement.addEventListener("close", closedialogElement);
+    form.addEventListener("submit", submitform);
+    formCancel.addEventListener("click", closedialog);
+    dialog.addEventListener("close", closedialog);
 
     let newProject = {};
 
-    dialogElement.showModal();
+    dialog.showModal();
 
-    function submitformElement() {
-      newProject = Project(formTitleElement.value);
+    function submitform() {
+      newProject = Project(formTitle.value);
 
       projectList.addProject(newProject);
       reloadProjectTabs();
     }
 
-    function closedialogElement() {
-      if (dialogElement.hasAttribute("open")) {
-        dialogElement.close();
+    function closedialog() {
+      if (dialog.hasAttribute("open")) {
+        dialog.close();
       }
 
-      formElement.reset();
+      form.reset();
+      form.removeEventListener("submit", submitform);
+      formCancel.removeEventListener("click", closedialog);
+      dialog.removeEventListener("close", closedialog);
 
       loadProjectPage(newProject);
     }
