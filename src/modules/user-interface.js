@@ -10,12 +10,6 @@ const projectTabsElement = document.getElementById("sidebar-project-tabs");
 export function UserInterface() {
   const publicMethods = {
     load: () => {
-      const proj = Project("Chores");
-      projectList.addProject(proj);
-      proj.addTask(Task("Car1", "Wash the car", "11/5/23", 1, false));
-      proj.addTask(Task("Car2", "Wash the car", "11/5/23", 1, true));
-      proj.addTask(Task("Car3", "Wash the car", "11/5/23", 1, false));
-
       sidebar.loadTabs();
     },
   };
