@@ -4,6 +4,8 @@ export function Project(title) {
   const _title = title;
   const _taskList = {};
 
+  let _isActive = true;
+
   const publicMethods = {
     addTask: (task) => {
       _taskList[Object.keys(_taskList).length] = task;
@@ -19,6 +21,14 @@ export function Project(title) {
 
     getTasks: () => {
       return _taskList;
+    },
+
+    getIsActive: () => {
+      return _isActive;
+    },
+
+    setIsActive: (boolean) => {
+      _isActive = boolean;
     },
   };
 
