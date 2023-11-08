@@ -88,8 +88,13 @@ main {
   gap: 10px;
 }
 
-#add-task-form {
-  visibility: hidden;
+#new-task-form {
+  display: none;
+}
+
+.task {
+  display: flex;
+  gap: 25px;
 }
 
 #new-project-dialog {
