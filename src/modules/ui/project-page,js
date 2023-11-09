@@ -1,0 +1,180 @@
+import { Task } from "../data/task";
+
+export function ProjectPage() {
+  const pageHeader = document.getElementById("project-page-header");
+  const pageTasks = document.getElementById("project-page-tasks");
+  const newTaskBtn = document.getElementById("project-page-new-task-button");
+
+  let currentProject;
+  let currentTasks;
+
+  newTaskBtn.addEventListener("click", newTaskHandler);
+
+  const publicMethods = {
+    load: (project) => {
+      currentProject = project;
+      currentTasks = currentProject.getTasks();
+
+      loadPage();
+    },
+  };
+
+  return publicMethods;
+
+  function loadPage() {
+    clearPage();
+    addHeader();
+    addTasks();
+  }
+
+  function clearPage() {
+    pageHeader.innerHTML = "";
+    pageTasks.innerHTML = "";
+  }
+
+  function addHeader() {
+    pageHeader.innerHTML = currentProject.getTitle();
+  }
+
+  function addTasks() {
+    if (currentTasks)
+      for (const key in currentTasks) {
+        const task = currentTasks[key].getTask();
+
+        pageTasks.appendChild(createTaskElement(task));
+      }
+  }
+
+  function createTaskElement(task) {
+    const containerElement = document.createElement("div");
+    containerElement.classList.add("task");
+
+    containerElement.appendChild(createTitle());
+    containerElement.appendChild(createDescription());
+    containerElement.appendChild(createDueDate());
+    containerElement.appendChild(createPriority());
+    containerElement.appendChild(createCompleted());
+    containerElement.appendChild(createDeleteTask());
+
+    return containerElement;
+
+    function createTitle() {
+      const element = document.createElement("div");
+      element.classList.add("task-title");
+      element.innerHTML = task.title;
+
+      element.addEventListener("click", () =>
+        console.log("NEED CODE: Click me and I should be editable"),
+      );
+
+      return element;
+    }
+
+    function createDescription() {
+      const element = document.createElement("div");
+      element.classList.add("task-description");
+      element.innerHTML = task.description;
+
+      element.addEventListener("click", () =>
+        console.log("NEED CODE: Click me and I should be editable"),
+      );
+
+      return element;
+    }
+
+    function createDueDate() {
+      const element = document.createElement("div");
+      element.classList.add("task-duedate");
+      element.innerHTML = task.dueDate;
+
+      element.addEventListener("click", () =>
+        console.log("NEED CODE: Click me and I should be editable"),
+      );
+
+      return element;
+    }
+
+    function createPriority() {
+      const element = document.createElement("input");
+      element.classList.add("task-priority");
+      element.type = "number";
+      element.setAttribute("min", "0");
+      element.setAttribute("max", "10");
+      element.value = task.priority;
+
+      element.addEventListener("change", () => {
+        element.value <= 10 && element.value >= 0
+          ? (task.priority = element.value)
+          : (element.value = task.priority);
+      });
+
+      return element;
+    }
+
+    function createCompleted() {
+      const element = document.createElement("input");
+      element.classList.add("task-completed");
+      element.type = "checkbox";
+      element.checked = task.completed;
+
+      element.addEventListener("change", () => {
+        task.completed = element.checked;
+      });
+
+      return element;
+    }
+
+    function createDeleteTask() {
+      const element = document.createElement("button");
+      element.classList.add("task-delete-button");
+      element.innerHTML = "×";
+
+      element.addEventListener("click", () => {
+        if (confirm("Are you sure you wish to remove this task?")) {
+          pageTasks.removeChild(containerElement);
+          project.deleteTask(task);
+        }
+      });
+
+      return element;
+    }
+  }
+  function newTaskHandler() {
+    const form = document.getElementById("new-task-form");
+    const formTitle = document.getElementById("new-task-form-title");
+    const formDescription = document.getElementById("new-task-form-desc");
+    const formDueDate = document.getElementById("new-task-form-duedate");
+    const formPriority = document.getElementById("new-task-form-priority");
+    const formCompleted = document.getElementById("new-task-form-completed");
+    const formCancelBtn = document.getElementById("new-task-form-cancel");
+
+    formCancelBtn.addEventListener("click", resetTaskHandler);
+    form.addEventListener("submit", submitForm);
+
+    form.style.display = "block";
+    newTaskBtn.style.display = "none";
+
+    function resetTaskHandler() {
+      formCancelBtn.removeEventListener("click", resetTaskHandler);
+      form.removeEventListener("submit", submitForm);
+
+      form.style.display = "none";
+      newTaskBtn.style.display = "inline";
+      form.reset();
+    }
+
+    function submitForm() {
+      currentProject.addTask(
+        Task(
+          formTitle.value,
+          formDescription.value,
+          formDueDate.value,
+          formPriority.value,
+          formCompleted.value,
+        ),
+      );
+      resetTaskHandler();
+      loadPage();
+    }
+  }
+}
