@@ -1,12 +1,12 @@
 import "./style.css";
 import { Filters } from "./modules/filters";
 import { ProjectList } from "./modules/project-list";
-import { UserInterface } from "./modules/user-interface";
+import { Sidebar } from "./modules/ui/sidebar";
 
 const filterList = Filters();
 const projectList = ProjectList();
-const ui = UserInterface();
+const sidebar = Sidebar();
 
-ui.load();
+sidebar.load();
 
 export { projectList, filterList };
