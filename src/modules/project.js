@@ -1,9 +1,9 @@
 import { deleteProperty } from "./shared-functions";
 
-export function Project(title) {
-  const _title = title;
+export function Project() {
   const _taskList = {};
 
+  let _title = "";
   let _active = true;
 
   const publicMethods = {
@@ -17,6 +17,10 @@ export function Project(title) {
 
     getTitle: () => {
       return _title;
+    },
+
+    setTitle: (title) => {
+      _title = title;
     },
 
     getTasks: () => {
