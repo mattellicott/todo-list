@@ -1,5 +1,5 @@
 import { Project } from "../data/project";
-import { projectList } from "../..";
+import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
   const projectTabs = document.getElementById("sidebar-project-tabs");
@@ -39,7 +39,7 @@ export function Sidebar() {
 
     if (project.getActive()) updateCurrent(element, project);
 
-    element.addEventListener("click", (e) => updateCurrent(e.target));
+    element.addEventListener("click", (e) => updateCurrent(e.target, project));
 
     projectTabs.appendChild(element);
   }
@@ -54,6 +54,7 @@ export function Sidebar() {
       current.project = project;
 
       setActiveTab();
+      projectPage.load(project);
     }
   }
 
