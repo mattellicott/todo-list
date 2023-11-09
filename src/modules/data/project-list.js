@@ -16,9 +16,11 @@ export function ProjectList() {
       return _projectList;
     },
 
-    findActive: () => {
+    getActive: () => {
       for (const key in _projectList) {
-        if (_projectList[key].getActive()) return true;
+        const project = _projectList[key];
+
+        if (project.isActive()) return project;
       }
     },
 
