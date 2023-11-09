@@ -4,7 +4,7 @@ export function Project() {
   const _taskList = {};
 
   let _title = "";
-  let _active = true;
+  let _active = false;
 
   const publicMethods = {
     addTask: (task) => {
@@ -27,8 +27,12 @@ export function Project() {
       return _taskList;
     },
 
-    getActive: () => {
+    isActive: () => {
       return _active;
+    },
+
+    setActive: (bool) => {
+      _active = bool;
     },
 
     makeActive: () => {
