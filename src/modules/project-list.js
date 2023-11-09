@@ -18,13 +18,13 @@ export function ProjectList() {
 
     findActive: () => {
       for (const key in _projectList) {
-        if (_projectList[key].getIsActive()) return true;
+        if (_projectList[key].getActive()) return true;
       }
     },
 
     setProjectsInactive: () => {
       for (const key in _projectList) {
-        _projectList[key].setIsActive(false);
+        _projectList[key].makeInactive();
       }
     },
   };
