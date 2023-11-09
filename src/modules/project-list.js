@@ -22,7 +22,7 @@ export function ProjectList() {
       }
     },
 
-    setProjectsInactive: () => {
+    setAllInactive: () => {
       for (const key in _projectList) {
         _projectList[key].makeInactive();
       }
