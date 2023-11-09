@@ -1,4 +1,4 @@
-import { deleteProperty } from "./shared-functions";
+import { deleteProperty } from "../shared/shared-functions";
 
 export function ProjectList() {
   const _projectList = {};

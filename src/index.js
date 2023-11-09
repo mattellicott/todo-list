@@ -1,6 +1,6 @@
 import "./style.css";
 import { Filters } from "./modules/filters";
-import { ProjectList } from "./modules/project-list";
+import { ProjectList } from "./modules/data/project-list";
 import { Sidebar } from "./modules/ui/sidebar";
 
 const filterList = Filters();
