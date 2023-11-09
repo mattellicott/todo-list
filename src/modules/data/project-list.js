@@ -23,12 +23,6 @@ export function ProjectList() {
         if (project.isActive()) return project;
       }
     },
-
-    setAllInactive: () => {
-      for (const key in _projectList) {
-        _projectList[key].makeInactive();
-      }
-    },
   };
 
   return publicMethods;
