@@ -1,4 +1,6 @@
 import { Project } from "../data/project";
+import { Task } from "../data/task";
+import { Storage } from "../data/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
@@ -16,6 +18,29 @@ export function Sidebar() {
 
   const publicMethods = {
     load: () => {
+      // let proj = Project();
+      // proj.setTitle("Proj1");
+      // proj.addTask(Task("Task1", "Desc1", "11/1/23"));
+      // proj.addTask(Task("Task11", "Desc11", "11/1/23"));
+      // proj.addTask(Task("Task111", "Desc111", "11/1/23"));
+      // projectList.addProject(proj);
+
+      // proj = Project();
+      // proj.setTitle("Proj2");
+      // proj.addTask(Task("Task2", "Desc2", "11/1/23"));
+      // proj.addTask(Task("Task22", "Desc22", "11/1/23"));
+      // projectList.addProject(proj);
+
+      // proj = Project();
+      // proj.setTitle("Proj3");
+      // proj.addTask(Task("Task3", "Desc3", "11/1/23"));
+      // proj.addTask(Task("Task33", "Desc33", "11/1/23"));
+      // proj.addTask(Task("Task333", "Desc333", "11/1/23"));
+      // projectList.addProject(proj);
+
+      // current.project = proj;
+      window.ls = projectList;
+
       addTabs();
     },
   };
@@ -85,6 +110,8 @@ export function Sidebar() {
 
       current.project.makeInactive();
       addTab(newProject);
+
+      Storage.saveProjects(projectList);
     }
 
     function closeDialog() {

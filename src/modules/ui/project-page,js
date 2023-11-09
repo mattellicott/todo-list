@@ -1,4 +1,6 @@
 import { Task } from "../data/task";
+import { Storage } from "../data/storage";
+import { projectList } from "../..";
 
 export function ProjectPage() {
   const pageHeader = document.getElementById("project-page-header");
@@ -173,8 +175,11 @@ export function ProjectPage() {
           formCompleted.value,
         ),
       );
+
       resetTaskHandler();
       loadPage();
+
+      Storage.saveProjects(projectList);
     }
   }
 }
