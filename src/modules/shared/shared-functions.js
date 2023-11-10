@@ -3,7 +3,7 @@ export function deleteProperty(obj, property) {
   let endKey = Object.keys(obj).length - 1;
 
   for (const key in obj) {
-    if (obj[key].getTask() === property) {
+    if (obj[key] === property) {
       propDeleted = true;
       delete obj.key;
     }
