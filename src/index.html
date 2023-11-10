@@ -30,7 +30,11 @@
           <label for="new-task-form-duedate">Due Date:</label>
           <input id="new-task-form-duedate" type="date" />
           <label for="new-task-form-priority">Priority:</label>
-          <input id="new-task-form-priority" type="number" min="0" max="10" />
+          <select id="new-task-form-priority">
+            <option value="Low" selected>Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
           <label for="new-task-form-completed">Completed:</label>
           <input id="new-task-form-completed" type="checkbox" />
           <button id="new-task-form-cancel" type="reset">Cancel</button>
