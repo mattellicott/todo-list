@@ -1,6 +1,4 @@
 import { Project } from "../data/project";
-import { Task } from "../data/task";
-import { Storage } from "../data/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
