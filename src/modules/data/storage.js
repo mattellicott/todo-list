@@ -6,9 +6,12 @@ export const Storage = {
     const projects = JSON.parse(localStorage.getItem("projects"));
 
     for (const key in projects) {
-      const tasks = projects[key].tasks;
       const newProject = Project();
+      const tasks = projects[key].tasks;
+      const active = projects[key].active;
+
       newProject.setTitle(projects[key].title);
+      newProject.setActive(active);
 
       for (const key in tasks) {
         const task = tasks[key];
@@ -37,7 +40,11 @@ export const Storage = {
         tasks[key] = task.getTask();
       }
 
-      projects[key] = { title: project.getTitle(), tasks: tasks };
+      projects[key] = {
+        title: project.getTitle(),
+        tasks: tasks,
+        active: project.isActive(),
+      };
     }
 
     localStorage.setItem("projects", JSON.stringify(projects));
