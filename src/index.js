@@ -1,7 +1,7 @@
 import "./style.css";
-import { Storage } from "./modules/data/storage";
+import { Storage } from "./modules/data-handling/storage";
 import { Filters } from "./modules/filters";
-import { ProjectList } from "./modules/data/project-list";
+import { ProjectList } from "./modules/data-handling/project-list";
 import { Sidebar } from "./modules/ui/sidebar";
 import { ProjectPage } from "./modules/ui/project-page,js";
 

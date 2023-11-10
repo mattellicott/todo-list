@@ -1,5 +1,5 @@
-import { Task } from "../data/task";
-import { Storage } from "../data/storage";
+import { Task } from "../data-handling/task";
+import { Storage } from "../data-handling/storage";
 import { projectList } from "../..";
 
 export function ProjectPage() {

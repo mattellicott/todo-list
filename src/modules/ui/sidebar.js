@@ -1,4 +1,4 @@
-import { Project } from "../data/project";
+import { Project } from "../data-handling/project";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
