@@ -3,9 +3,9 @@ import { Storage } from "../data-handling/storage";
 import { projectList } from "../..";
 
 export function ProjectPage() {
-  const pageHeader = document.getElementById("project-page-header");
-  const pageTasks = document.getElementById("project-page-tasks");
-  const newTaskBtn = document.getElementById("project-page-new-task-button");
+  const pageHeader = document.getElementById("page-header");
+  const pageTasks = document.getElementById("page-tasks");
+  const newTaskBtn = document.getElementById("new-task-btn");
 
   let currentProject;
   let currentTasks;
@@ -127,12 +127,12 @@ export function ProjectPage() {
   }
   function newTaskHandler() {
     const form = document.getElementById("new-task-form");
-    const formTitle = document.getElementById("new-task-form-title");
-    const formDescription = document.getElementById("new-task-form-desc");
-    const formDueDate = document.getElementById("new-task-form-duedate");
-    const formPriority = document.getElementById("new-task-form-priority");
-    const formCompleted = document.getElementById("new-task-form-completed");
-    const formCancelBtn = document.getElementById("new-task-form-cancel");
+    const formTitle = document.getElementById("new-task-title");
+    const formDescription = document.getElementById("new-task-description");
+    const formDueDate = document.getElementById("new-task-due-date");
+    const formPriority = document.getElementById("new-task-priority");
+    const formCompleted = document.getElementById("new-task-completed");
+    const formCancelBtn = document.getElementById("new-task-cancel");
 
     formCancelBtn.addEventListener("click", resetTaskHandler);
     form.addEventListener("submit", submitForm);

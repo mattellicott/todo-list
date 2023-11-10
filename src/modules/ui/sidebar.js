@@ -3,8 +3,8 @@ import { Storage } from "../data-handling/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
-  const projectTabs = document.getElementById("sidebar-project-tabs");
-  const newProjectBtn = document.getElementById("sidebar-project-new-button");
+  const projectTabs = document.getElementById("project-tabs");
+  const newProjectBtn = document.getElementById("new-project-btn");
 
   // Current should default to the All Filter or the last opened Project
   // This should cause it to automatically set the right tab with the 'active' class
@@ -29,31 +29,37 @@ export function Sidebar() {
   }
 
   function addTab(project) {
-    const containerElement = document.createElement("button");
     const title = project.getTitle();
-
-    containerElement.innerHTML = title;
-    containerElement.id = title + "-tab";
-    containerElement.classList.add("sidebar-tab");
+    const containerElement = document.createElement("div");
+    containerElement.classList.add("tab");
     containerElement.title = title;
 
-    containerElement.appendChild(createDeleteBtn());
+    containerElement.appendChild(createTitle());
+    containerElement.appendChild(createDelete());
 
     if (project.isActive()) {
       updateActive(project, containerElement);
       projectPage.load(project);
     }
 
-    containerElement.addEventListener("click", (e) => {
-      updateActive(project, e.target);
-      projectPage.load(project);
-    });
-
     projectTabs.appendChild(containerElement);
 
-    function createDeleteBtn() {
-      const element = document.createElement("button");
-      element.classList.add("sidebar-project-delete-button");
+    function createTitle() {
+      const element = document.createElement("div");
+      element.classList.add("title");
+      element.innerHTML = title;
+
+      containerElement.addEventListener("click", (e) => {
+        updateActive(project, containerElement);
+        projectPage.load(project);
+      });
+
+      return element;
+    }
+
+    function createDelete() {
+      const element = document.createElement("div");
+      element.classList.add("delete");
       element.innerHTML = "×";
 
       element.addEventListener("click", () => {

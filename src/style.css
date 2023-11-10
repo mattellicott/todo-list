@@ -28,68 +28,58 @@ main {
 
 #sidebar {
   min-height: 0;
-  width: 240px;
   border-right: 2px solid rgb(0 0 0);
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 220px;
 }
 
-#sidebar-project-container {
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-#sidebar-project-container > * {
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-#sidebar-project-tabs {
-  flex-shrink: 1;
-  min-height: 0;
-  overflow: hidden auto;
-}
-
-#sidebar header {
-  font: bold 2rem Arial;
-}
-
-#sidebar-filter-tabs .filter-tab,
-#sidebar-project-new-button,
-#sidebar-project-tabs .sidebar-tab {
-  background-color: rgb(255 255 255);
-  border: 5px solid white;
-  width: 200px;
+#sidebar * {
+  background-color: #ffffff;
   font: bold 1.5rem Arial;
   user-select: none;
+}
+
+#sidebar .tab .title {
+  flex: 1;
   overflow-x: hidden;
   text-overflow: ellipsis;
   text-align: left;
 }
 
-#sidebar-filter-tabs *:hover,
-#sidebar-filter-tabs *.active,
-#sidebar-project-tabs *:hover,
-#sidebar-project-tabs *.active {
-  background-color: black;
-  color: white;
+#sidebar .tab {
+  width: 180px;
+  display: flex;
+  border: 5px solid white;
+  padding: 0 5px;
+  background-color: #ffffff;
+}
+
+#sidebar .tab:hover,
+#sidebar .tab.active {
+  background-color: #000000;
   border: 5px solid red;
 }
 
-.sidebar-tab {
+#sidebar .tab:hover *,
+#sidebar .tab.active * {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#project-container {
+  min-height: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  flex-direction: column;
 }
 
-.sidebar-project-delete-button {
-  font-size: 1.5rem;
+#project-tabs {
+  overflow: hidden auto;
 }
 
-#project-page {
+#page {
   padding: 25px;
   flex: auto;
   display: flex;
