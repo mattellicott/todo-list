@@ -97,6 +97,18 @@ main {
   gap: 25px;
 }
 
+.task-priority.low {
+  color: #008000;
+}
+
+.task-priority.medium {
+  color: #ffa500;
+}
+
+.task-priority.high {
+  color: #ff0000;
+}
+
 #new-project-dialog {
   margin: auto;
 }
