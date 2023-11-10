@@ -43,13 +43,17 @@ export function ProjectPage() {
   function addTasks() {
     if (currentTasks)
       for (const key in currentTasks) {
-        const task = currentTasks[key].getTask();
-
-        pageTasks.appendChild(createTaskElement(task));
+        pageTasks.appendChild(createTaskElement(currentTasks[key]));
       }
   }
 
   function createTaskElement(task) {
+    const title = task.getTitle();
+    const description = task.getDescription();
+    const dueDate = task.getDueDate();
+    const priority = task.getPriority();
+    const completed = task.getCompleted();
+
     const containerElement = document.createElement("div");
     containerElement.classList.add("task");
 
@@ -65,11 +69,7 @@ export function ProjectPage() {
     function createTitle() {
       const element = document.createElement("div");
       element.classList.add("task-title");
-      element.innerHTML = task.title;
-
-      element.addEventListener("click", () =>
-        console.log("NEED CODE: Click me and I should be editable"),
-      );
+      element.innerHTML = title;
 
       return element;
     }
@@ -77,11 +77,7 @@ export function ProjectPage() {
     function createDescription() {
       const element = document.createElement("div");
       element.classList.add("task-description");
-      element.innerHTML = task.description;
-
-      element.addEventListener("click", () =>
-        console.log("NEED CODE: Click me and I should be editable"),
-      );
+      element.innerHTML = description;
 
       return element;
     }
@@ -89,28 +85,16 @@ export function ProjectPage() {
     function createDueDate() {
       const element = document.createElement("div");
       element.classList.add("task-duedate");
-      element.innerHTML = task.dueDate;
-
-      element.addEventListener("click", () =>
-        console.log("NEED CODE: Click me and I should be editable"),
-      );
+      element.innerHTML = dueDate;
 
       return element;
     }
 
     function createPriority() {
-      const element = document.createElement("input");
+      const element = document.createElement("div");
       element.classList.add("task-priority");
-      element.type = "number";
-      element.setAttribute("min", "0");
-      element.setAttribute("max", "10");
-      element.value = task.priority;
-
-      element.addEventListener("change", () => {
-        element.value <= 10 && element.value >= 0
-          ? (task.priority = element.value)
-          : (element.value = task.priority);
-      });
+      element.classList.add(["low", "medium", "high"][priority]);
+      element.innerHTML = ["Low", "Medium", "High"][priority];
 
       return element;
     }
@@ -119,11 +103,8 @@ export function ProjectPage() {
       const element = document.createElement("input");
       element.classList.add("task-completed");
       element.type = "checkbox";
-      element.checked = task.completed;
-
-      element.addEventListener("change", () => {
-        task.completed = element.checked;
-      });
+      element.checked = completed;
+      element.disabled = true;
 
       return element;
     }
@@ -136,7 +117,8 @@ export function ProjectPage() {
       element.addEventListener("click", () => {
         if (confirm("Are you sure you wish to remove this task?")) {
           pageTasks.removeChild(containerElement);
-          project.deleteTask(task);
+          currentProject.deleteTask(task);
+          Storage.saveProjects(projectList);
         }
       });
 
@@ -156,6 +138,7 @@ export function ProjectPage() {
     form.addEventListener("submit", submitForm);
 
     form.style.display = "block";
+    formTitle.focus();
     newTaskBtn.style.display = "none";
 
     function resetTaskHandler() {
@@ -173,7 +156,7 @@ export function ProjectPage() {
           formTitle.value,
           formDescription.value,
           formDueDate.value,
-          formPriority.value,
+          formPriority.selectedIndex,
           formCompleted.value,
         ),
       );
