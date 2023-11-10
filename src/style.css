@@ -57,9 +57,9 @@ main {
   font: bold 2rem Arial;
 }
 
-#sidebar-filter-tabs *,
+#sidebar-filter-tabs .filter-tab,
 #sidebar-project-new-button,
-#sidebar-project-tabs * {
+#sidebar-project-tabs .sidebar-tab {
   background-color: rgb(255 255 255);
   border: 5px solid white;
   width: 200px;
@@ -77,6 +77,16 @@ main {
   background-color: black;
   color: white;
   border: 5px solid red;
+}
+
+.sidebar-tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.sidebar-project-delete-button {
+  font-size: 1.5rem;
 }
 
 #project-page {
