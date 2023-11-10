@@ -1,4 +1,5 @@
 import { Project } from "../data-handling/project";
+import { Storage } from "../data-handling/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
@@ -28,25 +29,43 @@ export function Sidebar() {
   }
 
   function addTab(project) {
-    const element = document.createElement("button");
+    const containerElement = document.createElement("button");
     const title = project.getTitle();
 
-    element.innerHTML = title;
-    element.id = title + "-tab";
-    element.classList.add("sidebar-tab");
-    element.title = title;
+    containerElement.innerHTML = title;
+    containerElement.id = title + "-tab";
+    containerElement.classList.add("sidebar-tab");
+    containerElement.title = title;
+
+    containerElement.appendChild(createDeleteBtn());
 
     if (project.isActive()) {
-      updateActive(project, element);
+      updateActive(project, containerElement);
       projectPage.load(project);
     }
 
-    element.addEventListener("click", (e) => {
+    containerElement.addEventListener("click", (e) => {
       updateActive(project, e.target);
       projectPage.load(project);
     });
 
-    projectTabs.appendChild(element);
+    projectTabs.appendChild(containerElement);
+
+    function createDeleteBtn() {
+      const element = document.createElement("button");
+      element.classList.add("sidebar-project-delete-button");
+      element.innerHTML = "×";
+
+      element.addEventListener("click", () => {
+        if (confirm("Are you sure you wish to remove this project?")) {
+          projectTabs.removeChild(containerElement);
+          projectList.deleteProject(project);
+          Storage.saveProjects(projectList);
+        }
+      });
+
+      return element;
+    }
   }
 
   function updateActive(project, element) {
