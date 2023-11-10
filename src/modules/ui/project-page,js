@@ -27,6 +27,8 @@ export function ProjectPage() {
     clearPage();
     addHeader();
     addTasks();
+
+    Storage.saveProjects(projectList);
   }
 
   function clearPage() {
@@ -178,8 +180,6 @@ export function ProjectPage() {
 
       resetTaskHandler();
       loadPage();
-
-      Storage.saveProjects(projectList);
     }
   }
 }
