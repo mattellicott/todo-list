@@ -37,7 +37,13 @@ export const Storage = {
       const tasks = {};
 
       for (const [key, task] of Object.entries(project.getTasks())) {
-        tasks[key] = task.getTask();
+        tasks[key] = {
+          title: task.getTitle(),
+          description: task.getDescription(),
+          dueDate: task.getDueDate(),
+          priority: task.getPriority(),
+          completed: task.getCompleted(),
+        };
       }
 
       projects[key] = {
