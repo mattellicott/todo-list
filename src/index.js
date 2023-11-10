@@ -1,6 +1,6 @@
 import "./style.css";
 import { Storage } from "./modules/data-handling/storage";
-import { Filters } from "./modules/filters";
+import { Filters } from "./modules/data-handling/filters";
 import { ProjectList } from "./modules/data-handling/project-list";
 import { Sidebar } from "./modules/ui/sidebar";
 import { ProjectPage } from "./modules/ui/project-page,js";
