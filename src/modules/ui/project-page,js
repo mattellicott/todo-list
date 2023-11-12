@@ -4,7 +4,7 @@ import { projectList } from "../..";
 
 export function ProjectPage() {
   const pageHeader = document.getElementById("page-header");
-  const pageTasks = document.getElementById("page-tasks");
+  const tasklist = document.getElementById("tasklist");
   const newTaskBtn = document.getElementById("new-task-btn");
 
   let currentProject;
@@ -33,7 +33,7 @@ export function ProjectPage() {
 
   function clearPage() {
     pageHeader.innerHTML = "";
-    pageTasks.innerHTML = "";
+    tasklist.innerHTML = "";
   }
 
   function addHeader() {
@@ -43,7 +43,7 @@ export function ProjectPage() {
   function addTasks() {
     if (currentTasks)
       for (const key in currentTasks) {
-        pageTasks.appendChild(createTaskElement(currentTasks[key]));
+        tasklist.appendChild(createTaskElement(currentTasks[key]));
       }
   }
 
@@ -68,7 +68,7 @@ export function ProjectPage() {
 
     function createTitle() {
       const element = document.createElement("div");
-      element.classList.add("task-title");
+      element.classList.add("title");
       element.innerHTML = title;
 
       return element;
@@ -76,7 +76,7 @@ export function ProjectPage() {
 
     function createDescription() {
       const element = document.createElement("div");
-      element.classList.add("task-description");
+      element.classList.add("description");
       element.innerHTML = description;
 
       return element;
@@ -84,7 +84,7 @@ export function ProjectPage() {
 
     function createDueDate() {
       const element = document.createElement("div");
-      element.classList.add("task-duedate");
+      element.classList.add("due-date");
       element.innerHTML = dueDate;
 
       return element;
@@ -92,7 +92,7 @@ export function ProjectPage() {
 
     function createPriority() {
       const element = document.createElement("div");
-      element.classList.add("task-priority");
+      element.classList.add("priority");
       element.classList.add(["low", "medium", "high"][priority]);
       element.innerHTML = ["Low", "Medium", "High"][priority];
 
@@ -100,23 +100,21 @@ export function ProjectPage() {
     }
 
     function createCompleted() {
-      const element = document.createElement("input");
-      element.classList.add("task-completed");
-      element.type = "checkbox";
-      element.checked = completed;
-      element.disabled = true;
+      const element = document.createElement("div");
+      element.classList.add("completed");
+      if (completed) element.innerHTML = "×";
 
       return element;
     }
 
     function createDeleteTask() {
-      const element = document.createElement("button");
-      element.classList.add("task-delete-button");
+      const element = document.createElement("div");
+      element.classList.add("delete-button");
       element.innerHTML = "×";
 
       element.addEventListener("click", () => {
         if (confirm("Are you sure you wish to remove this task?")) {
-          pageTasks.removeChild(containerElement);
+          tasklist.removeChild(containerElement);
           currentProject.deleteTask(task);
           Storage.saveProjects(projectList);
         }
@@ -157,7 +155,7 @@ export function ProjectPage() {
           formDescription.value,
           formDueDate.value,
           formPriority.selectedIndex,
-          formCompleted.value,
+          formCompleted.checked,
         ),
       );
 
