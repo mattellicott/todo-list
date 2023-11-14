@@ -23,6 +23,16 @@ export function ProjectList() {
         if (project.isActive()) return project;
       }
     },
+
+    setActiveProject: (project) => {
+      for (const key in _projectList) {
+        const currentProject = _projectList[key];
+
+        currentProject === project
+          ? currentProject.setActive(true)
+          : currentProject.setActive(false);
+      }
+    },
   };
 
   return publicMethods;
