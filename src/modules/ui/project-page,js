@@ -1,5 +1,5 @@
-import { Task } from "../data-handling/task";
-import { Storage } from "../data-handling/storage";
+import { Task } from "../data-handlers/task";
+import { Storage } from "../data-handlers/storage";
 import { createTaskElement } from "./shared";
 
 export function ProjectPage() {

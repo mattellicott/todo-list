@@ -1,5 +1,5 @@
-import { Project } from "../data-handling/project";
-import { Storage } from "../data-handling/storage";
+import { Project } from "../data-handlers/project";
+import { Storage } from "../data-handlers/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
