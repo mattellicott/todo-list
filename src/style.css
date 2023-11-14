@@ -109,7 +109,6 @@ main {
   display: flex;
   word-break: break-all;
   align-items: center;
-  padding: 5px;
 }
 
 #tasklist {
@@ -130,7 +129,13 @@ main {
 }
 
 .task {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
+}
+
+.task > * {
+  padding: 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 #tasklist :last-child {
