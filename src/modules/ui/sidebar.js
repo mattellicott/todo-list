@@ -27,7 +27,7 @@ export function Sidebar() {
     }
   }
 
-  function addProjectTab(project, isNew = false) {
+  function addProjectTab(project) {
     const title = project.getTitle();
     const containerElement = document.createElement("div");
     containerElement.classList.add("tab");
@@ -38,7 +38,7 @@ export function Sidebar() {
 
     projectTabs.appendChild(containerElement);
 
-    if (isNew || project.isActive()) {
+    if (project.isActive()) {
       updateActiveTab(containerElement);
       projectPage.load(project);
     }
@@ -62,10 +62,16 @@ export function Sidebar() {
       element.classList.add("delete");
       element.innerHTML = "×";
 
-      element.addEventListener("click", () => {
+      element.addEventListener("click", (e) => {
         if (confirm("Are you sure you wish to remove this project?")) {
+          e.stopPropagation();
+
+          if (e.target.parentElement === currentTab)
+            updateActiveTab(document.getElementsByClassName("tab")[0]);
+
           projectTabs.removeChild(containerElement);
           projectList.deleteProject(project);
+
           Storage.saveProjects();
         }
       });
