@@ -1,6 +1,5 @@
 import { Task } from "../data-handling/task";
 import { Storage } from "../data-handling/storage";
-import { projectList } from "../..";
 import { createTaskElement } from "./shared";
 
 export function ProjectPage() {
