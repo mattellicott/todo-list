@@ -6,9 +6,6 @@ export function Sidebar() {
   const projectTabs = document.getElementById("project-tabs");
   const newProjectBtn = document.getElementById("new-project-btn");
 
-  // Current should default to the All Filter or the last opened Project
-  // This should cause it to automatically set the right tab with the 'active' class
-  // project: Project(),
   let currentTab;
 
   newProjectBtn.addEventListener("click", newProjectHandler);
