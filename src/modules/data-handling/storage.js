@@ -1,8 +1,9 @@
 import { Project } from "./project";
 import { Task } from "./task";
+import { projectList } from "../..";
 
 export const Storage = {
-  loadProjects: (projectList) => {
+  loadProjects: () => {
     const projects = JSON.parse(localStorage.getItem("projects"));
 
     for (const key in projects) {
@@ -30,7 +31,7 @@ export const Storage = {
     }
   },
 
-  saveProjects: (projectList) => {
+  saveProjects: () => {
     let projects = {};
 
     for (const [key, project] of Object.entries(projectList.getProjects())) {
