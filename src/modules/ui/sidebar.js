@@ -9,7 +9,6 @@ export function Sidebar() {
   // Current should default to the All Filter or the last opened Project
   // This should cause it to automatically set the right tab with the 'active' class
   // project: Project(),
-  let currentProject;
   let currentTab;
 
   newProjectBtn.addEventListener("click", newProjectHandler);
@@ -24,11 +23,11 @@ export function Sidebar() {
 
   function addTabs() {
     for (const project of Object.values(projectList.getProjects())) {
-      addTab(project);
+      addProjectTab(project);
     }
   }
 
-  function addTab(project) {
+  function addProjectTab(project, isNew = false) {
     const title = project.getTitle();
     const containerElement = document.createElement("div");
     containerElement.classList.add("tab");
@@ -37,12 +36,12 @@ export function Sidebar() {
     containerElement.appendChild(createTitle());
     containerElement.appendChild(createDelete());
 
-    if (project.isActive()) {
-      updateActive(project, containerElement);
+    projectTabs.appendChild(containerElement);
+
+    if (isNew || project.isActive()) {
+      updateActiveTab(containerElement);
       projectPage.load(project);
     }
-
-    projectTabs.appendChild(containerElement);
 
     function createTitle() {
       const element = document.createElement("div");
@@ -50,7 +49,8 @@ export function Sidebar() {
       element.innerHTML = title;
 
       containerElement.addEventListener("click", (e) => {
-        updateActive(project, containerElement);
+        updateActiveTab(containerElement);
+        projectList.setActiveProject(project);
         projectPage.load(project);
       });
 
@@ -66,23 +66,12 @@ export function Sidebar() {
         if (confirm("Are you sure you wish to remove this project?")) {
           projectTabs.removeChild(containerElement);
           projectList.deleteProject(project);
-          Storage.saveProjects(projectList);
+          Storage.saveProjects();
         }
       });
 
       return element;
     }
-  }
-
-  function updateActive(project, element) {
-    updateActiveProject(project);
-    updateActiveTab(element);
-  }
-
-  function updateActiveProject(project) {
-    if (currentProject) currentProject.setActive(false);
-    currentProject = project;
-    currentProject.setActive(true);
   }
 
   function updateActiveTab(element) {
@@ -107,10 +96,10 @@ export function Sidebar() {
 
     function submitForm() {
       newProject.setTitle(formTitle.value);
-      updateActiveProject(newProject);
 
       projectList.addProject(newProject);
-      addTab(newProject);
+      projectList.setActiveProject(newProject);
+      addProjectTab(newProject);
     }
 
     function closeDialog() {
