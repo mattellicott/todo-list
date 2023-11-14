@@ -17,6 +17,8 @@ export function createTaskElement(task) {
   containerElement.appendChild(createCompleted());
   containerElement.appendChild(createDeleteTask());
 
+  containerElement.addEventListener("change", Storage.saveProjects);
+
   return containerElement;
 
   function createTitle() {
