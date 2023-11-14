@@ -53,9 +53,14 @@ export function createTaskElement(task) {
   }
 
   function createCompleted() {
-    const element = document.createElement("div");
+    const element = document.createElement("input");
+    element.type = "checkbox";
     element.classList.add("completed");
-    if (completed) element.innerHTML = "×";
+    element.checked = completed ? true : false;
+
+    element.addEventListener("change", () =>
+      task.setCompleted(element.checked),
+    );
 
     return element;
   }
