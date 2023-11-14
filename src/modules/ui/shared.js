@@ -1,5 +1,7 @@
 import { Storage } from "../data-handlers/storage";
 
+export function Page() {}
+
 export function createTaskElement(task) {
   const title = task.getTitle();
   const description = task.getDescription();
