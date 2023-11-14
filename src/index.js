@@ -10,7 +10,7 @@ const projectList = ProjectList();
 const sidebar = Sidebar();
 const projectPage = ProjectPage();
 
-Storage.loadProjects(projectList);
+Storage.loadProjects();
 
 sidebar.load();
 projectPage.load(projectList.getActive());
