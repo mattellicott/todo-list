@@ -1,4 +1,4 @@
-export function Task(project, title, description, dueDate, priority, completed) {
+function Task(project, title, description, dueDate, priority, completed) {
   const _task = { project, title, description, dueDate, priority, completed };
 
   const publicMethods = {
@@ -49,3 +49,5 @@ export function Task(project, title, description, dueDate, priority, completed) 
 
   return publicMethods;
 }
+
+export { Task };
