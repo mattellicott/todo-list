@@ -4,20 +4,22 @@ import { projectList } from "../..";
 
 export const Storage = {
   loadProjects: () => {
-    const projects = JSON.parse(localStorage.getItem("projects"));
+    const storedProjects = JSON.parse(localStorage.getItem("storedProjects"));
 
-    for (const key in projects) {
+    for (const key in storedProjects) {
       const newProject = Project();
-      const tasks = projects[key].tasks;
-      const active = projects[key].active;
+      const tasks = storedProjects[key].tasks;
+      const active = storedProjects[key].active;
 
-      newProject.setTitle(projects[key].title);
+      newProject.setTitle(storedProjects[key].title);
       newProject.setActive(active);
 
       for (const key in tasks) {
         const task = tasks[key];
+
         newProject.addTask(
           Task(
+            newProject,
             task.title,
             task.description,
             task.dueDate,
@@ -32,7 +34,7 @@ export const Storage = {
   },
 
   saveProjects: () => {
-    let projects = {};
+    let storedProjects = {};
 
     for (const [key, project] of Object.entries(projectList.getProjects())) {
       const tasks = {};
@@ -47,13 +49,13 @@ export const Storage = {
         };
       }
 
-      projects[key] = {
+      storedProjects[key] = {
         title: project.getTitle(),
         tasks: tasks,
         active: project.isActive(),
       };
     }
 
-    localStorage.setItem("projects", JSON.stringify(projects));
+    localStorage.setItem("storedProjects", JSON.stringify(storedProjects));
   },
 };
