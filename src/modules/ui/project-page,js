@@ -29,7 +29,7 @@ export function ProjectPage() {
     addHeader();
     addTasks();
 
-    Storage.saveProjects(projectList);
+    Storage.saveProjects();
   }
 
   function clearPage() {
