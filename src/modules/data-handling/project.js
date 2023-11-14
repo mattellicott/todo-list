@@ -34,14 +34,6 @@ export function Project() {
     setActive: (bool) => {
       _active = bool;
     },
-
-    makeActive: () => {
-      _active = true;
-    },
-
-    makeInactive: () => {
-      _active = false;
-    },
   };
 
   return publicMethods;
