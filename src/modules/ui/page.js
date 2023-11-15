@@ -31,7 +31,7 @@ export const Page = (function () {
         ? "a New Project and then "
         : "";
 
-    noTaskMsgDiv.innerHTML = `Create ${noProjMsg}a new task to get started!`;
+    noTaskMsgDiv.innerHTML = `Create ${noProjMsg}a New Task to get started!`;
   }
 
   function reset() {
