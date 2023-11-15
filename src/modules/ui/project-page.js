@@ -13,7 +13,7 @@ export const ProjectPage = (function () {
     load: (project) => {
       currentProject = project;
 
-      Page.load(currentProject);
+      Page.load(currentProject, "project");
       newTaskBtn.style.display = "initial";
     },
   };
