@@ -1,9 +1,9 @@
 import { Storage } from "../data-handlers/storage";
 
 export const Page = (function () {
-  const header = document.getElementById("page-header");
-  const tasklist = document.getElementById("tasklist");
-  const noTaskMsg = document.getElementById("no-task-message");
+  const headerDiv = document.getElementById("page-header");
+  const tasklistDiv = document.getElementById("tasklist");
+  const noTaskMsgDiv = document.getElementById("no-task-message");
   const newTaskBtn = document.getElementById("new-task-btn");
   const newTaskForm = document.getElementById("new-task-form");
 
@@ -15,30 +15,30 @@ export const Page = (function () {
     },
 
     addTaskElement: (task) => {
-      tasklist.appendChild(createTaskElement(task));
+      tasklistDiv.appendChild(createTaskElement(task));
     },
   };
 
   function reset() {
-    header.innerHTML = "";
-    while (tasklist.children.length > 1)
-      tasklist.removeChild(tasklist.lastChild);
+    headerDiv.innerHTML = "";
+    while (tasklistDiv.children.length > 1)
+      tasklistDiv.removeChild(tasklistDiv.lastChild);
 
-    noTaskMsg.style.display = "initial";
+    noTaskMsgDiv.style.display = "initial";
     newTaskForm.style.display = "none";
     newTaskBtn.style.display = "none";
   }
 
   function loadHeader(str) {
-    header.innerHTML = str;
+    headerDiv.innerHTML = str;
   }
 
   function loadTasklist(tasks) {
     if (Object.keys(tasks) != 0) {
-      noTaskMsg.style.display = "none";
+      noTaskMsgDiv.style.display = "none";
 
       for (const key in tasks) {
-        tasklist.appendChild(createTaskElement(tasks[key]));
+        tasklistDiv.appendChild(createTaskElement(tasks[key]));
       }
     }
   }
