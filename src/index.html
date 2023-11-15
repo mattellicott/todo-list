@@ -24,9 +24,19 @@
         <button id="new-task-btn">New Task</button>
         <form id="new-task-form">
           <label for="new-task-title">Title:</label>
-          <input id="new-task-title" type="text" required />
+          <input
+            id="new-task-title"
+            type="text"
+            pattern="^[a-zA-Z0-9]*$"
+            title="Use alphanumeric characters only."
+            required />
           <label for="new-task-description">Description:</label>
-          <input id="new-task-description" type="text" required />
+          <input
+            id="new-task-description"
+            type="text"
+            pattern="^[a-zA-Z0-9]*$"
+            title="Use alphanumeric characters only."
+            required />
           <label for="new-task-due-date">Due Date:</label>
           <input id="new-task-due-date" type="date" />
           <label for="new-task-priority">Priority:</label>
@@ -71,7 +81,12 @@
       <form id="new-project-form">
         <h1>Add Project</h1>
         <label for="new-project-form-title">Title:</label>
-        <input id="new-project-form-title" type="text" required />
+        <input
+          id="new-project-form-title"
+          type="text"
+          pattern="^[a-zA-Z0-9]*$"
+          title="Use alphanumeric characters only."
+          required />
         <button id="new-project-form-cancel" type="reset">Cancel</button>
         <input
           id="new-project-form-create"
