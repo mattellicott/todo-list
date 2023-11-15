@@ -7,8 +7,12 @@ export const Page = (function () {
   const newTaskBtn = document.getElementById("new-task-btn");
   const newTaskForm = document.getElementById("new-task-form");
 
+  let pageType;
+
   const publicMethods = {
-    load: (taskContainer) => {
+    load: (taskContainer, type) => {
+      pageType = type;
+
       reset();
       loadHeader(taskContainer.getTitle());
       loadTasklist(taskContainer.getTasks());
@@ -38,7 +42,7 @@ export const Page = (function () {
       noTaskMsgDiv.style.display = "none";
 
       for (const key in tasks) {
-        tasklistDiv.appendChild(createTaskElement(tasks[key]));
+        tasklistDiv.appendChild(createTaskElement(tasks[key], pageType));
       }
     }
   }
@@ -46,11 +50,13 @@ export const Page = (function () {
   return publicMethods;
 })();
 
-function createTaskElement(task) {
+function createTaskElement(task, pageType) {
   const containerElement = document.createElement("div");
 
   containerElement.classList.add("task");
-  containerElement.appendChild(createTitle());
+
+  if (pageType === "filter") containerElement.appendChild(createProjectTitle());
+  containerElement.appendChild(createTaskTitle());
   containerElement.appendChild(createDescription());
   containerElement.appendChild(createDueDate());
   containerElement.appendChild(createPriority());
@@ -61,7 +67,17 @@ function createTaskElement(task) {
 
   return containerElement;
 
-  function createTitle() {
+  function createProjectTitle() {
+    const title = task.getProject().getTitle();
+    const element = document.createElement("div");
+
+    element.classList.add("project-title");
+    element.innerHTML = title;
+
+    return element;
+  }
+
+  function createTaskTitle() {
     const title = task.getTitle();
     const element = document.createElement("div");
 
