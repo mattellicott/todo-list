@@ -1,7 +1,8 @@
 import { Project } from "../data-handlers/project";
-import { projectList, projectPage } from "../..";
+import { ProjectPage } from "./project-page.js";
+import { ProjectList } from "../data-handlers/project-list.js";
 
-export function Sidebar() {
+export const Sidebar = (function () {
   const projectTabs = document.getElementById("project-tabs");
   const newProjectBtn = document.getElementById("new-project-btn");
 
@@ -18,7 +19,7 @@ export function Sidebar() {
   return publicMethods;
 
   function addTabs() {
-    for (const project of Object.values(projectList.getProjects())) {
+    for (const project of Object.values(ProjectList.getProjects())) {
       addProjectTab(project);
     }
   }
@@ -36,7 +37,7 @@ export function Sidebar() {
 
     if (project.isActive()) {
       updateActiveTab(containerElement);
-      projectPage.load(project);
+      ProjectPage.load(project);
     }
 
     function createTitle() {
@@ -46,8 +47,8 @@ export function Sidebar() {
 
       containerElement.addEventListener("click", (e) => {
         updateActiveTab(containerElement);
-        projectList.setActiveProject(project);
-        projectPage.load(project);
+        ProjectList.setActiveProject(project);
+        ProjectPage.load(project);
       });
 
       return element;
@@ -64,11 +65,11 @@ export function Sidebar() {
         if (confirm("Are you sure you wish to remove this project?")) {
           if (e.target.parentElement === currentTab) {
             updateActiveTab(document.getElementsByClassName("tab")[0]);
-            projectPage.load(projectList.getProjects()[0]);
+            ProjectPage.load(ProjectList.getProjects()[0]);
           }
 
           projectTabs.removeChild(containerElement);
-          projectList.deleteProject(project);
+          ProjectList.deleteProject(project);
         }
       });
 
@@ -99,8 +100,8 @@ export function Sidebar() {
     function submitForm() {
       newProject.setTitle(formTitle.value);
 
-      projectList.addProject(newProject);
-      projectList.setActiveProject(newProject);
+      ProjectList.addProject(newProject);
+      ProjectList.setActiveProject(newProject);
       addProjectTab(newProject);
     }
 
@@ -115,4 +116,4 @@ export function Sidebar() {
       dialog.removeEventListener("close", closeDialog);
     }
   }
-}
+})();
