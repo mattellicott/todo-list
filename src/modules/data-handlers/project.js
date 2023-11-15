@@ -1,3 +1,4 @@
+import { Storage } from "./storage";
 import { deleteProperty } from "../shared/shared-functions";
 
 export function Project() {
@@ -9,10 +10,12 @@ export function Project() {
   const publicMethods = {
     addTask: (task) => {
       _taskList[Object.keys(_taskList).length] = task;
+      Storage.saveProjects();
     },
 
     deleteTask: (task) => {
       deleteProperty(_taskList, task);
+      Storage.saveProjects();
     },
 
     getTitle: () => {
