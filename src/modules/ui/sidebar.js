@@ -29,6 +29,8 @@ export const Sidebar = (function () {
     for (const project of Object.values(ProjectList.getProjects())) {
       addProjectTab(project);
     }
+
+    noActiveUpdate();
   }
 
   function addFilterTab(filter) {
@@ -47,6 +49,7 @@ export const Sidebar = (function () {
       element.innerHTML = title;
 
       containerElement.addEventListener("click", (e) => {
+        ProjectList.setActiveProject();
         updateActiveTab(containerElement);
         FilterPage.load(filter);
       });
@@ -94,13 +97,10 @@ export const Sidebar = (function () {
         e.stopPropagation();
 
         if (confirm("Are you sure you wish to remove this project?")) {
-          if (e.target.parentElement === currentTab) {
-            updateActiveTab(document.getElementsByClassName("tab")[0]);
-            ProjectPage.load(ProjectList.getProjects()[0]);
-          }
-
           projectTabs.removeChild(containerElement);
           ProjectList.deleteProject(project);
+
+          if (e.target.parentElement === currentTab) noActiveUpdate();
         }
       });
 
@@ -112,6 +112,13 @@ export const Sidebar = (function () {
     if (currentTab) currentTab.classList.remove("active");
     currentTab = element;
     currentTab.classList.add("active");
+  }
+
+  function noActiveUpdate() {
+    if (!ProjectList.getActive()) {
+      updateActiveTab(filterTabs.firstChild);
+      FilterPage.load(FilterList[0]);
+    }
   }
 
   function newProjectHandler() {
