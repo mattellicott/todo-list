@@ -87,13 +87,13 @@ main {
   gap: 10px;
 }
 
-#new-task-form {
-  display: none;
-}
-
-#tasks-header {
+#page-header {
   font: bold 2rem Arial;
   text-align: center;
+}
+
+#new-task-form {
+  display: none;
 }
 
 #tasks {
@@ -104,7 +104,16 @@ main {
   border: 2px solid black;
 }
 
-#tasklist-header,
+#tasks-header {
+  text-align: center;
+  font: bold 1.25rem Arial;
+  border-bottom: 2px solid black;
+  min-height: 40px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+#tasks-header,
 #tasklist > * {
   display: flex;
   word-break: break-all;
@@ -119,13 +128,8 @@ main {
   background-color: lightblue;
 }
 
-#tasklist-header {
-  text-align: center;
-  font: bold 1.25rem Arial;
-  border-bottom: 2px solid black;
-  min-height: 40px;
-  overflow: auto;
-  scrollbar-gutter: stable;
+#tasklist :last-child {
+  border-bottom: none;
 }
 
 .task {
@@ -138,45 +142,35 @@ main {
   border-right: 1px solid black;
 }
 
-#tasklist :last-child {
-  border-bottom: none;
-}
-
-#tasklist-header .title,
-#tasklist .title {
+.title {
   width: 150px;
 }
 
-#tasklist-header .description,
-#tasklist .description {
+.description {
   width: 600px;
 }
 
-#tasklist-header .due-date,
-#tasklist-header .priority,
-#tasklist-header .completed,
-#tasklist .due-date,
-#tasklist .priority,
-#tasklist .completed {
+.due-date,
+.priority,
+.completed {
   width: 150px;
   text-align: center;
 }
 
-#tasklist-header .delete-button,
-#tasklist .delete-button {
+.delete-button {
   width: 50px;
   text-align: center;
 }
 
-.task .priority.low {
+.priority.low {
   color: #008000;
 }
 
-.task .priority.medium {
+.priority.medium {
   color: #ffa500;
 }
 
-.task .priority.high {
+.priority.high {
   color: #ff0000;
 }
 
