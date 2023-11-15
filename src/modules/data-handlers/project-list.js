@@ -1,4 +1,5 @@
 import { deleteProperty } from "../shared/shared-functions";
+import { Storage } from "./storage";
 
 export function ProjectList() {
   const _projectList = {};
@@ -6,10 +7,12 @@ export function ProjectList() {
   const publicMethods = {
     addProject: (project) => {
       _projectList[Object.keys(_projectList).length] = project;
+      Storage.saveProjects();
     },
 
     deleteProject: (project) => {
       deleteProperty(_projectList, project);
+      Storage.saveProjects();
     },
 
     getProjects: () => {
@@ -32,6 +35,7 @@ export function ProjectList() {
           ? currentProject.setActive(true)
           : currentProject.setActive(false);
       }
+      Storage.saveProjects();
     },
   };
 
