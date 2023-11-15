@@ -47,15 +47,9 @@ export const Page = (function () {
 })();
 
 function createTaskElement(task) {
-  const title = task.getTitle();
-  const description = task.getDescription();
-  const dueDate = task.getDueDate();
-  const priority = task.getPriority();
-  const completed = task.getCompleted();
-
   const containerElement = document.createElement("div");
-  containerElement.classList.add("task");
 
+  containerElement.classList.add("task");
   containerElement.appendChild(createTitle());
   containerElement.appendChild(createDescription());
   containerElement.appendChild(createDueDate());
@@ -68,7 +62,9 @@ function createTaskElement(task) {
   return containerElement;
 
   function createTitle() {
+    const title = task.getTitle();
     const element = document.createElement("div");
+
     element.classList.add("title");
     element.innerHTML = title;
 
@@ -76,7 +72,9 @@ function createTaskElement(task) {
   }
 
   function createDescription() {
+    const description = task.getDescription();
     const element = document.createElement("div");
+
     element.classList.add("description");
     element.innerHTML = description;
 
@@ -84,7 +82,9 @@ function createTaskElement(task) {
   }
 
   function createDueDate() {
+    const dueDate = task.getDueDate();
     const element = document.createElement("div");
+
     element.classList.add("due-date");
     element.innerHTML = dueDate;
 
@@ -92,7 +92,9 @@ function createTaskElement(task) {
   }
 
   function createPriority() {
+    const priority = task.getPriority();
     const element = document.createElement("div");
+
     element.classList.add("priority");
     element.classList.add(["low", "medium", "high"][priority]);
     element.innerHTML = ["Low", "Medium", "High"][priority];
@@ -101,9 +103,11 @@ function createTaskElement(task) {
   }
 
   function createCompleted() {
+    const completed = task.getCompleted();
     const element = document.createElement("input");
-    element.type = "checkbox";
+
     element.classList.add("completed");
+    element.type = "checkbox";
     element.checked = completed ? true : false;
 
     element.addEventListener("change", () =>
