@@ -1,3 +1,4 @@
+import { ProjectList } from "../data-handlers/project-list";
 import { Storage } from "../data-handlers/storage";
 
 export const Page = (function () {
@@ -14,6 +15,7 @@ export const Page = (function () {
       pageType = type;
 
       reset();
+      setNoTaskMsg();
       loadHeader(taskContainer.getTitle());
       loadTasklist(taskContainer.getTasks());
     },
@@ -22,6 +24,15 @@ export const Page = (function () {
       tasklistDiv.appendChild(createTaskElement(task));
     },
   };
+
+  function setNoTaskMsg() {
+    const noProjMsg =
+      Object.keys(ProjectList.getProjects()).length == 0
+        ? "a New Project and then "
+        : "";
+
+    noTaskMsgDiv.innerHTML = `Create ${noProjMsg}a new task to get started!`;
+  }
 
   function reset() {
     headerDiv.innerHTML = "";
