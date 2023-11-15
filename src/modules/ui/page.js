@@ -4,20 +4,22 @@ import { Storage } from "../data-handlers/storage";
 export const Page = (function () {
   const headerDiv = document.getElementById("page-header");
   const tasklistDiv = document.getElementById("tasklist");
-  const noTaskMsgDiv = document.getElementById("no-task-message");
+  const defaultTaskMsgDiv = document.getElementById("default-task-message");
   const newTaskBtn = document.getElementById("new-task-btn");
   const newTaskForm = document.getElementById("new-task-form");
 
-  let pageType;
+  let _pageType;
+  let _taskContainer;
 
   const publicMethods = {
     load: (taskContainer, type) => {
-      pageType = type;
+      _taskContainer = taskContainer;
+      _pageType = type;
 
       reset();
-      setNoTaskMsg();
-      loadHeader(taskContainer.getTitle());
-      loadTasklist(taskContainer.getTasks());
+      setDefaultTaskMsg();
+      loadHeader(_taskContainer.getTitle());
+      loadTasklist(_taskContainer.getTasks());
     },
 
     addTaskElement: (task) => {
@@ -25,13 +27,18 @@ export const Page = (function () {
     },
   };
 
-  function setNoTaskMsg() {
+  function setDefaultTaskMsg() {
     const noProjMsg =
       Object.keys(ProjectList.getProjects()).length == 0
         ? "a New Project and then "
         : "";
 
-    noTaskMsgDiv.innerHTML = `Create ${noProjMsg}a New Task to get started!`;
+    const noTaskMsg =
+      Object.keys(_taskContainer.getTasks()).length == 0
+        ? `Create ${noProjMsg}a New Task to get started!`
+        : "";
+
+    noTaskMsgDiv.innerHTML = noTaskMsg;
   }
 
   function reset() {
