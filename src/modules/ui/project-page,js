@@ -1,54 +1,26 @@
 import { Task } from "../data-handlers/task";
-import { Storage } from "../data-handlers/storage";
-import { createTaskElement } from "./shared";
+import { Page } from "./shared";
 
 export function ProjectPage() {
-  const pageHeader = document.getElementById("page-header");
-  const tasklist = document.getElementById("tasklist");
   const newTaskBtn = document.getElementById("new-task-btn");
-
-  let currentProject;
-  let currentTasks;
+  const newTaskForm = document.getElementById("new-task-form");
 
   newTaskBtn.addEventListener("click", newTaskHandler);
+
+  let currentProject;
 
   const publicMethods = {
     load: (project) => {
       currentProject = project;
-      currentTasks = currentProject.getTasks();
 
-      loadPage();
+      Page.load(currentProject);
+      newTaskBtn.style.display = "initial";
     },
   };
 
   return publicMethods;
 
-  function loadPage() {
-    clearPage();
-    addHeader();
-    addTasks();
-
-    Storage.saveProjects();
-  }
-
-  function clearPage() {
-    pageHeader.innerHTML = "";
-    tasklist.innerHTML = "";
-  }
-
-  function addHeader() {
-    pageHeader.innerHTML = currentProject.getTitle();
-  }
-
-  function addTasks() {
-    if (currentTasks)
-      for (const key in currentTasks) {
-        tasklist.appendChild(createTaskElement(currentTasks[key]));
-      }
-  }
-
   function newTaskHandler() {
-    const form = document.getElementById("new-task-form");
     const formTitle = document.getElementById("new-task-title");
     const formDescription = document.getElementById("new-task-description");
     const formDueDate = document.getElementById("new-task-due-date");
@@ -57,34 +29,35 @@ export function ProjectPage() {
     const formCancelBtn = document.getElementById("new-task-cancel");
 
     formCancelBtn.addEventListener("click", resetTaskHandler);
-    form.addEventListener("submit", submitForm);
+    newTaskForm.addEventListener("submit", submitForm);
 
-    form.style.display = "block";
+    newTaskForm.style.display = "initial";
     formTitle.focus();
     newTaskBtn.style.display = "none";
 
     function resetTaskHandler() {
       formCancelBtn.removeEventListener("click", resetTaskHandler);
-      form.removeEventListener("submit", submitForm);
+      newTaskForm.removeEventListener("submit", submitForm);
 
-      form.style.display = "none";
+      newTaskForm.style.display = "none";
       newTaskBtn.style.display = "inline";
-      form.reset();
+      newTaskForm.reset();
     }
 
     function submitForm() {
-      currentProject.addTask(
-        Task(
-          formTitle.value,
-          formDescription.value,
-          formDueDate.value,
-          formPriority.selectedIndex,
-          formCompleted.checked,
-        ),
+      const newTask = Task(
+        currentProject,
+        formTitle.value,
+        formDescription.value,
+        formDueDate.value,
+        formPriority.selectedIndex,
+        formCompleted.checked,
       );
 
+      currentProject.addTask(newTask);
+      Page.addTaskElement(newTask);
+
       resetTaskHandler();
-      loadPage();
     }
   }
 }
