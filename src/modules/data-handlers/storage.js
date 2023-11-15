@@ -1,6 +1,6 @@
 import { Project } from "./project";
 import { Task } from "./task";
-import { projectList } from "../..";
+import { ProjectList } from "./project-list";
 
 export const Storage = {
   loadProjects: () => {
@@ -29,14 +29,14 @@ export const Storage = {
         );
       }
 
-      projectList.addProject(newProject);
+      ProjectList.addProject(newProject);
     }
   },
 
   saveProjects: () => {
     let storedProjects = {};
 
-    for (const [key, project] of Object.entries(projectList.getProjects())) {
+    for (const [key, project] of Object.entries(ProjectList.getProjects())) {
       const tasks = {};
 
       for (const [key, task] of Object.entries(project.getTasks())) {
