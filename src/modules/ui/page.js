@@ -53,8 +53,8 @@ export const Page = (function () {
     newTaskBtn.style.display = "none";
   }
 
-  function loadHeader(str) {
-    headerDiv.innerHTML = str;
+  function loadHeader(title) {
+    headerDiv.innerHTML = title + " Tasks";
   }
 
   function loadTasklist(tasks) {
