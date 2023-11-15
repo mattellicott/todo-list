@@ -1,5 +1,4 @@
 import { Project } from "../data-handlers/project";
-import { Storage } from "../data-handlers/storage";
 import { projectList, projectPage } from "../..";
 
 export function Sidebar() {
@@ -60,16 +59,16 @@ export function Sidebar() {
       element.innerHTML = "×";
 
       element.addEventListener("click", (e) => {
-        if (confirm("Are you sure you wish to remove this project?")) {
-          e.stopPropagation();
+        e.stopPropagation();
 
-          if (e.target.parentElement === currentTab)
+        if (confirm("Are you sure you wish to remove this project?")) {
+          if (e.target.parentElement === currentTab) {
             updateActiveTab(document.getElementsByClassName("tab")[0]);
+            projectPage.load(projectList.getProjects()[0]);
+          }
 
           projectTabs.removeChild(containerElement);
           projectList.deleteProject(project);
-
-          Storage.saveProjects();
         }
       });
 
