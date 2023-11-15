@@ -8,6 +8,9 @@ export const Page = (function () {
   const newTaskBtn = document.getElementById("new-task-btn");
   const newTaskForm = document.getElementById("new-task-form");
 
+  const observer = new MutationObserver(setDefaultTaskMsg);
+  observer.observe(tasklistDiv, { childList: true });
+
   let _pageType;
   let _taskContainer;
 
@@ -43,7 +46,7 @@ export const Page = (function () {
 
   function reset() {
     headerDiv.innerHTML = "";
-    while (tasklistDiv.children.length > 1)
+    while (tasklistDiv.childElementCount > 1)
       tasklistDiv.removeChild(tasklistDiv.lastChild);
 
     newTaskForm.style.display = "none";
@@ -55,10 +58,8 @@ export const Page = (function () {
   }
 
   function loadTasklist(tasks) {
-    if (Object.keys(tasks) != 0) {
-      for (const key in tasks) {
-        tasklistDiv.appendChild(createTaskElement(tasks[key]));
-      }
+    for (const key in tasks) {
+      tasklistDiv.appendChild(createTaskElement(tasks[key]));
     }
   }
 
