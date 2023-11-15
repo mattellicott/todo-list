@@ -1,5 +1,5 @@
 import { Task } from "../data-handlers/task";
-import { Page } from "./shared";
+import { Page } from "./page";
 
 export function ProjectPage() {
   const newTaskBtn = document.getElementById("new-task-btn");
