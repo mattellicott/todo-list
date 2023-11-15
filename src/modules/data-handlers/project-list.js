@@ -1,7 +1,7 @@
 import { deleteProperty } from "../shared/shared-functions";
 import { Storage } from "./storage";
 
-export function ProjectList() {
+export const ProjectList = (function () {
   const _projectList = {};
 
   const publicMethods = {
@@ -40,4 +40,4 @@ export function ProjectList() {
   };
 
   return publicMethods;
-}
+})();
