@@ -1,8 +1,11 @@
 import { Project } from "../data-handlers/project";
+import { FilterPage } from "./filter-page.js";
 import { ProjectPage } from "./project-page.js";
+import { FilterList } from "../data-handlers/filter-list.js";
 import { ProjectList } from "../data-handlers/project-list.js";
 
 export const Sidebar = (function () {
+  const filterTabs = document.getElementById("filter-tabs");
   const projectTabs = document.getElementById("project-tabs");
   const newProjectBtn = document.getElementById("new-project-btn");
 
@@ -19,8 +22,36 @@ export const Sidebar = (function () {
   return publicMethods;
 
   function addTabs() {
+    for (const filter of Object.values(FilterList)) {
+      addFilterTab(filter);
+    }
+
     for (const project of Object.values(ProjectList.getProjects())) {
       addProjectTab(project);
+    }
+  }
+
+  function addFilterTab(filter) {
+    const title = filter.getTitle();
+    const containerElement = document.createElement("div");
+    containerElement.classList.add("tab");
+    containerElement.title = title;
+
+    containerElement.appendChild(createTitle());
+
+    filterTabs.appendChild(containerElement);
+
+    function createTitle() {
+      const element = document.createElement("div");
+      element.classList.add("title");
+      element.innerHTML = title;
+
+      containerElement.addEventListener("click", (e) => {
+        updateActiveTab(containerElement);
+        FilterPage.load(filter);
+      });
+
+      return element;
     }
   }
 
