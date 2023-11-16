@@ -31,7 +31,7 @@ export const ProjectPage = (function () {
     formCancelBtn.addEventListener("click", resetTaskHandler);
     newTaskForm.addEventListener("submit", submitForm);
 
-    newTaskForm.style.display = "initial";
+    newTaskForm.style.display = "flex";
     formTitle.focus();
     newTaskBtn.style.display = "none";
 
