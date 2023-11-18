@@ -17,16 +17,7 @@ export const Storage = {
       for (const key in tasks) {
         const task = tasks[key];
 
-        newProject.addTask(
-          Task(
-            newProject,
-            task.title,
-            task.description,
-            task.dueDate,
-            task.priority,
-            task.completed,
-          ),
-        );
+        newProject.addTask(Task(newProject, task.title, task.description, task.dueDate, task.priority, task.completed));
       }
 
       ProjectList.addProject(newProject);
