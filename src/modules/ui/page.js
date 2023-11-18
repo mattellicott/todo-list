@@ -110,7 +110,7 @@ export const Page = (function () {
               sortString(a.getProject().getTitle(), b.getProject().getTitle()),
             );
           break;
-        case "title":
+        case "task-title":
           if (!_isRepeatedSortType)
             _tasksCopy.sort((a, b) => sortString(a.getTitle(), b.getTitle()));
           else
