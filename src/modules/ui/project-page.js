@@ -1,5 +1,6 @@
 import { Task } from "../data-handlers/task";
 import { Page } from "./page";
+import { getDate, getMonth, getYear } from "date-fns";
 
 export const ProjectPage = (function () {
   const newTaskBtn = document.getElementById("new-task-btn");
@@ -31,8 +32,10 @@ export const ProjectPage = (function () {
     formCancelBtn.addEventListener("click", resetTaskHandler);
     newTaskForm.addEventListener("submit", submitForm);
 
-    newTaskForm.style.display = "flex";
     formTitle.focus();
+    formDueDate.setAttribute("min", getFullDate());
+    formDueDate.value = getFullDate();
+    newTaskForm.style.display = "flex";
     newTaskBtn.style.display = "none";
 
     function resetTaskHandler() {
@@ -58,6 +61,12 @@ export const ProjectPage = (function () {
       Page.addTaskElement(newTask);
 
       resetTaskHandler();
+    }
+
+    function getFullDate() {
+      const date = new Date();
+
+      return getYear(date) + "-" + (getMonth(date) + 1) + "-" + getDate(date);
     }
   }
 })();
