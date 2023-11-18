@@ -45,7 +45,6 @@ export const Sidebar = (function () {
 
     function createTitle() {
       const element = document.createElement("div");
-      element.classList.add("title");
       element.innerHTML = title;
 
       containerElement.addEventListener("click", (e) => {
