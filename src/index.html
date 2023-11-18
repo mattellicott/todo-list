@@ -39,7 +39,7 @@
               title="Use alphanumeric characters only."
               required />
             <label for="new-task-due-date">Due Date:</label>
-            <input id="new-task-due-date" type="date" />
+            <input id="new-task-due-date" type="date" max="2099-12-31" required />
             <label for="new-task-priority">Priority:</label>
             <select id="new-task-priority">
               <option value="Low" selected>Low</option>
@@ -49,11 +49,7 @@
             <label for="new-task-completed">Completed:</label>
             <input id="new-task-completed" type="checkbox" />
             <button id="new-task-cancel" type="reset">Cancel</button>
-            <input
-              id="new-task-create"
-              type="submit"
-              formmethod="dialog"
-              value="Create" />
+            <input id="new-task-create" type="submit" formmethod="dialog" value="Create" />
           </form>
           <div id="tasks">
             <div id="tasks-header">
@@ -90,11 +86,7 @@
           title="Use alphanumeric characters only."
           required />
         <button id="new-project-form-cancel" type="reset">Cancel</button>
-        <input
-          id="new-project-form-create"
-          type="submit"
-          formmethod="dialog"
-          value="Create" />
+        <input id="new-project-form-create" type="submit" formmethod="dialog" value="Create" />
       </form>
     </dialog>
   </body>
