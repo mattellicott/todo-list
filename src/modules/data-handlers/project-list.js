@@ -31,9 +31,7 @@ export const ProjectList = (function () {
       for (const key in _projectList) {
         const currentProject = _projectList[key];
 
-        currentProject === project
-          ? currentProject.setActive(true)
-          : currentProject.setActive(false);
+        currentProject === project ? currentProject.setActive(true) : currentProject.setActive(false);
       }
       Storage.saveProjects();
     },
