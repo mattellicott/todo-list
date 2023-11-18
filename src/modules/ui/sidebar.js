@@ -48,9 +48,11 @@ export const Sidebar = (function () {
       element.innerHTML = title;
 
       containerElement.addEventListener("click", (e) => {
-        ProjectList.setActiveProject();
-        updateActiveTab(containerElement);
-        FilterPage.load(filter);
+        if (!containerElement.classList.contains("active")) {
+          ProjectList.setActiveProject();
+          updateActiveTab(containerElement);
+          FilterPage.load(filter);
+        }
       });
 
       return element;
@@ -79,9 +81,11 @@ export const Sidebar = (function () {
       element.innerHTML = title;
 
       containerElement.addEventListener("click", (e) => {
-        updateActiveTab(containerElement);
-        ProjectList.setActiveProject(project);
-        ProjectPage.load(project);
+        if (!containerElement.classList.contains("active")) {
+          updateActiveTab(containerElement);
+          ProjectList.setActiveProject(project);
+          ProjectPage.load(project);
+        }
       });
 
       return element;
