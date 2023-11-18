@@ -6,7 +6,6 @@
 
 body {
   height: 100vh;
-  min-width: fit-content;
   display: flex;
   flex-direction: column;
 }
@@ -21,10 +20,8 @@ body > header {
 }
 
 main {
-  flex: 1;
   min-height: 0;
   display: flex;
-  overflow: hidden;
 }
 
 #sidebar {
@@ -86,32 +83,39 @@ main {
 }
 
 #page {
-  flex: 1;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+#page > div {
+  gap: 20px;
   padding: 25px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  height: 100%;
 }
 
 #page-header {
-  font: bold 2rem Arial;
   text-align: center;
+  font: bold 2rem Arial;
 }
 
 #new-task-btn,
 #new-task-form {
-  height: 30px;
-  border: hidden;
+  margin: 0 auto;
+  height: 45px;
 }
 
 #new-task-form {
   display: flex;
   align-items: center;
   gap: 10px;
+  border: 2px solid white;
 }
 
 #tasks {
+  min-width: fit-content;
   display: flex;
   flex-direction: column;
   min-height: 40px;
@@ -121,66 +125,45 @@ main {
 #tasks-header {
   text-align: center;
   font: bold 1.25rem Arial;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   flex: 0 0 40px;
-  overflow: auto;
   scrollbar-gutter: stable;
   user-select: none;
-}
-
-#tasks-header,
-#tasklist > * {
   display: flex;
-  word-break: break-all;
-  align-items: stretch;
+  overflow: hidden auto;
 }
 
-#tasklist {
+#tasks-container {
   overflow: hidden scroll;
 }
 
-#tasklist > :nth-child(odd) {
+#tasks-container > :nth-child(odd) {
   background-color: lightblue;
 }
 
-#tasklist :last-child {
-  border-bottom: none;
-}
-
 .task {
-  border-bottom: 2px solid black;
+  display: flex;
 }
 
 .task > * {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  word-break: break-all;
+  border: 1px solid black;
 }
 
-.project-title,
-.title,
-.description {
+.task > * > * {
   padding: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.project-title {
-  width: 150px;
-}
-
-.title {
-  width: 150px;
 }
 
 .description {
   width: 600px;
-}
+  align-self: center;}
 
+.project-title,
+.task-title,
 .due-date,
 .priority,
 .completed {
   width: 150px;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,7 +176,6 @@ main {
   justify-content: center;
   align-items: center;
   color: red;
-  font-size: 1.5rem;
   cursor: zoom-in;
 }
 
