@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
   </head>
-  <body>
+  <body style="visibility: hidden">
     <header>ToDo List</header>
     <main>
       <div id="sidebar">
@@ -20,52 +20,54 @@
         </section>
       </div>
       <div id="page">
-        <header id="page-header"><u></u></header>
-        <button id="new-task-btn">New Task</button>
-        <form id="new-task-form">
-          <label for="new-task-title">Title:</label>
-          <input
-            id="new-task-title"
-            type="text"
-            pattern="^[a-zA-Z0-9]*$"
-            title="Use alphanumeric characters only."
-            required />
-          <label for="new-task-description">Description:</label>
-          <input
-            id="new-task-description"
-            type="text"
-            pattern="^[a-zA-Z0-9]*$"
-            title="Use alphanumeric characters only."
-            required />
-          <label for="new-task-due-date">Due Date:</label>
-          <input id="new-task-due-date" type="date" />
-          <label for="new-task-priority">Priority:</label>
-          <select id="new-task-priority">
-            <option value="Low" selected>Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-          <label for="new-task-completed">Completed:</label>
-          <input id="new-task-completed" type="checkbox" />
-          <button id="new-task-cancel" type="reset">Cancel</button>
-          <input
-            id="new-task-create"
-            type="submit"
-            formmethod="dialog"
-            value="Create" />
-        </form>
-        <div id="tasks">
-          <div id="tasks-header">
-            <div class="project-title">Project</div>
-            <div class="title">Title</div>
-            <div class="description">Description</div>
-            <div class="due-date">Due Date</div>
-            <div class="priority">Priority</div>
-            <div class="completed">Completed?</div>
-            <div class="delete-button"></div>
-          </div>
-          <div id="tasklist">
-            <div id="default-task-message"></div>
+        <div>
+          <header id="page-header"><u></u></header>
+          <button id="new-task-btn">New Task</button>
+          <form id="new-task-form">
+            <label for="new-task-title">Title:</label>
+            <input
+              id="new-task-title"
+              type="text"
+              pattern="^[a-zA-Z0-9]*$"
+              title="Use alphanumeric characters only."
+              required />
+            <label for="new-task-description">Description:</label>
+            <input
+              id="new-task-description"
+              type="text"
+              pattern="^[a-zA-Z0-9]*$"
+              title="Use alphanumeric characters only."
+              required />
+            <label for="new-task-due-date">Due Date:</label>
+            <input id="new-task-due-date" type="date" />
+            <label for="new-task-priority">Priority:</label>
+            <select id="new-task-priority">
+              <option value="Low" selected>Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+            <label for="new-task-completed">Completed:</label>
+            <input id="new-task-completed" type="checkbox" />
+            <button id="new-task-cancel" type="reset">Cancel</button>
+            <input
+              id="new-task-create"
+              type="submit"
+              formmethod="dialog"
+              value="Create" />
+          </form>
+          <div id="tasks">
+            <div id="tasks-header">
+              <div class="project-title">Project</div>
+              <div class="task-title">Title</div>
+              <div class="description">Description</div>
+              <div class="due-date">Due Date</div>
+              <div class="priority">Priority</div>
+              <div class="completed">Completed?</div>
+              <div class="delete-btn"></div>
+            </div>
+            <div id="tasks-container">
+              <div id="default-task-message"></div>
+            </div>
           </div>
         </div>
       </div>
