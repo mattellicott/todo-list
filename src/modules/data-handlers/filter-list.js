@@ -27,17 +27,12 @@ export const FilterList = (function () {
             break;
           case "Today": {
             const [month, day, year] = task.getDueDate().split("/");
-            if (isToday(new Date(year, month - 1, day)) && !task.getCompleted())
-              _tasks.push(task);
+            if (isToday(new Date(year, month - 1, day)) && !task.getCompleted()) _tasks.push(task);
             break;
           }
           case "Week": {
             const [month, day, year] = task.getDueDate().split("/");
-            if (
-              isThisWeek(new Date(year, month - 1, day)) &&
-              !task.getCompleted()
-            )
-              _tasks.push(task);
+            if (isThisWeek(new Date(year, month - 1, day)) && !task.getCompleted()) _tasks.push(task);
             break;
           }
           case "High Priority":
