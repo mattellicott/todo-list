@@ -156,7 +156,8 @@ main {
 
 .description {
   width: 600px;
-  align-self: center;}
+  align-self: center;
+}
 
 .project-title,
 .task-title,
@@ -167,6 +168,11 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.due-date > div {
+  width: 90px;
+  text-align: right;
 }
 
 .delete-btn {
