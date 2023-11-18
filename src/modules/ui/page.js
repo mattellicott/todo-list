@@ -10,8 +10,7 @@ export const Page = (function () {
   const newTaskForm = document.getElementById("new-task-form");
   const tasksHeaderDiv = document.getElementById("tasks-header");
 
-  for (const child of tasksHeaderDiv.children)
-    child.addEventListener("click", (e) => tasklistSortHandler(e));
+  for (const child of tasksHeaderDiv.children) child.addEventListener("click", (e) => tasklistSortHandler(e));
 
   const observer = new MutationObserver(setDefaultTaskMsg);
   observer.observe(tasksContainerDiv, { childList: true });
@@ -29,7 +28,6 @@ export const Page = (function () {
       _tasks = Object.values(taskContainer.getTasks());
       _pageType = type;
       _isRepeatedSortType = false;
-      _lastSortType = _pageType == 'filter' ? 'project-title' : 'title';
 
       reset();
       setDefaultTaskMsg();
@@ -43,15 +41,9 @@ export const Page = (function () {
   };
 
   function setDefaultTaskMsg() {
-    const noProjMsg =
-      Object.keys(ProjectList.getProjects()).length == 0
-        ? "a New Project and then "
-        : "";
+    const noProjMsg = Object.keys(ProjectList.getProjects()).length == 0 ? "a New Project and then " : "";
 
-    const noTaskMsg =
-      _tasks.length == 0
-        ? `Create ${noProjMsg}a New Task to get started!`
-        : "";
+    const noTaskMsg = _tasks.length == 0 ? `Create ${noProjMsg}a New Task to get started!` : "";
 
     defaultTaskMsgDiv.innerHTML = noTaskMsg;
   }
@@ -69,8 +61,7 @@ export const Page = (function () {
   }
 
   function loadTasklist(tasks) {
-    tasksHeaderDiv.firstElementChild.style.display =
-      _pageType == "filter" ? "" : "none";
+    tasksHeaderDiv.firstElementChild.style.display = _pageType == "filter" ? "" : "none";
 
     for (const task of tasks) {
       tasksContainerDiv.appendChild(createTaskElement(task));
@@ -78,8 +69,7 @@ export const Page = (function () {
   }
 
   function resetTasklist() {
-    while (tasksContainerDiv.childElementCount > 1)
-    tasksContainerDiv.removeChild(tasksContainerDiv.lastChild);
+    while (tasksContainerDiv.childElementCount > 1) tasksContainerDiv.removeChild(tasksContainerDiv.lastChild);
   }
 
   function reloadTasklist(tasks) {
@@ -102,44 +92,27 @@ export const Page = (function () {
       switch (_sortType) {
         case "project-title":
           if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) =>
-              sortString(a.getProject().getTitle(), b.getProject().getTitle()),
-            );
-          else
-            _tasksCopy.sort((b, a) =>
-              sortString(a.getProject().getTitle(), b.getProject().getTitle()),
-            );
+            _tasksCopy.sort((a, b) => sortString(a.getProject().getTitle(), b.getProject().getTitle()));
+          else _tasksCopy.sort((b, a) => sortString(a.getProject().getTitle(), b.getProject().getTitle()));
           break;
         case "task-title":
-          if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) => sortString(a.getTitle(), b.getTitle()));
-          else
-            _tasksCopy.sort((b, a) => sortString(a.getTitle(), b.getTitle()));
+          if (!_isRepeatedSortType) _tasksCopy.sort((a, b) => sortString(a.getTitle(), b.getTitle()));
+          else _tasksCopy.sort((b, a) => sortString(a.getTitle(), b.getTitle()));
           break;
         case "description":
-          if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) =>
-              sortString(a.getDescription(), b.getDescription()),
-            );
-          else
-            _tasksCopy.sort((b, a) =>
-              sortString(a.getDescription(), b.getDescription()),
-            );
+          if (!_isRepeatedSortType) _tasksCopy.sort((a, b) => sortString(a.getDescription(), b.getDescription()));
+          else _tasksCopy.sort((b, a) => sortString(a.getDescription(), b.getDescription()));
           break;
         case "due-date":
-          if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) => sortDate(a.getDueDate(), b.getDueDate()));
-          else
-            _tasksCopy.sort((b, a) => sortDate(a.getDueDate(), b.getDueDate()));
+          if (!_isRepeatedSortType) _tasksCopy.sort((a, b) => sortDate(a.getDueDate(), b.getDueDate()));
+          else _tasksCopy.sort((b, a) => sortDate(a.getDueDate(), b.getDueDate()));
           break;
         case "priority":
-          if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) => a.getPriority() - b.getPriority());
+          if (!_isRepeatedSortType) _tasksCopy.sort((a, b) => a.getPriority() - b.getPriority());
           else _tasksCopy.sort((b, a) => a.getPriority() - b.getPriority());
           break;
         case "completed":
-          if (!_isRepeatedSortType)
-            _tasksCopy.sort((a, b) => a.getCompleted() - b.getCompleted());
+          if (!_isRepeatedSortType) _tasksCopy.sort((a, b) => a.getCompleted() - b.getCompleted());
           else _tasksCopy.sort((b, a) => a.getCompleted() - b.getCompleted());
           break;
       }
@@ -153,13 +126,10 @@ export const Page = (function () {
       }
 
       function sortDate(aValue, bValue) {
-        const [aMonth, aDay, aYear] = aValue.split("/");
-        const [bMonth, bDay, bYear] = bValue.split("/");
+        const [aYear, aMonth, aDate] = aValue.split("-");
+        const [bYear, bMonth, bDate] = bValue.split("-");
 
-        return compareAsc(
-          new Date(aYear, aMonth - 1, aDay),
-          new Date(bYear, bMonth - 1, bDay),
-        );
+        return compareAsc(new Date(aYear, aMonth - 1, aDate), new Date(bYear, bMonth - 1, bDate));
       }
     }
   }
@@ -169,8 +139,7 @@ export const Page = (function () {
 
     containerElement.classList.add("task");
 
-    if (_pageType === "filter")
-      containerElement.appendChild(createProjectTitle());
+    if (_pageType === "filter") containerElement.appendChild(createProjectTitle());
     containerElement.appendChild(createTaskTitle());
     containerElement.appendChild(createDescription());
     containerElement.appendChild(createDueDate());
@@ -223,13 +192,14 @@ export const Page = (function () {
 
     function createDueDate() {
       const dueDate = task.getDueDate();
+      const [year, month, date] = dueDate.split("-");
       const elementWrapper = document.createElement("div");
       const element = document.createElement("div");
 
       elementWrapper.classList.add("due-date");
       elementWrapper.appendChild(element);
 
-      element.innerHTML = dueDate;
+      element.innerHTML = month + "-" + ((date < 10 ? "0" : "") + date) + "-" + year;
 
       return elementWrapper;
     }
@@ -259,9 +229,7 @@ export const Page = (function () {
       element.type = "checkbox";
       element.checked = completed ? true : false;
 
-      element.addEventListener("change", () =>
-        task.setCompleted(element.checked),
-      );
+      element.addEventListener("change", () => task.setCompleted(element.checked));
 
       return elementWrapper;
     }
