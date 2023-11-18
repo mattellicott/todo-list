@@ -4,7 +4,7 @@ import { compareAsc } from "date-fns";
 
 export const Page = (function () {
   const headerDiv = document.getElementById("page-header");
-  const tasklistDiv = document.getElementById("tasklist");
+  const tasksContainerDiv = document.getElementById("tasks-container");
   const defaultTaskMsgDiv = document.getElementById("default-task-message");
   const newTaskBtn = document.getElementById("new-task-btn");
   const newTaskForm = document.getElementById("new-task-form");
@@ -14,7 +14,7 @@ export const Page = (function () {
     child.addEventListener("click", (e) => tasklistSortHandler(e));
 
   const observer = new MutationObserver(setDefaultTaskMsg);
-  observer.observe(tasklistDiv, { childList: true });
+  observer.observe(tasksContainerDiv, { childList: true });
 
   let _pageType;
   let _sortType;
@@ -38,7 +38,7 @@ export const Page = (function () {
     },
 
     addTaskElement: (task) => {
-      tasklistDiv.appendChild(createTaskElement(task));
+      tasksContainerDiv.appendChild(createTaskElement(task));
     },
   };
 
@@ -70,16 +70,16 @@ export const Page = (function () {
 
   function loadTasklist(tasks) {
     tasksHeaderDiv.firstElementChild.style.display =
-      _pageType == "filter" ? "initial" : "none";
+      _pageType == "filter" ? "" : "none";
 
     for (const task of tasks) {
-      tasklistDiv.appendChild(createTaskElement(task));
+      tasksContainerDiv.appendChild(createTaskElement(task));
     }
   }
 
   function resetTasklist() {
-    while (tasklistDiv.childElementCount > 1)
-    tasklistDiv.removeChild(tasklistDiv.lastChild);
+    while (tasksContainerDiv.childElementCount > 1)
+    tasksContainerDiv.removeChild(tasksContainerDiv.lastChild);
   }
 
   function reloadTasklist(tasks) {
@@ -200,7 +200,7 @@ export const Page = (function () {
       const elementWrapper = document.createElement("div");
       const element = document.createElement("div");
 
-      elementWrapper.classList.add("title");
+      elementWrapper.classList.add("task-title");
       elementWrapper.appendChild(element);
 
       element.innerHTML = title;
